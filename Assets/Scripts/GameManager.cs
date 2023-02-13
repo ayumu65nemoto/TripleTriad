@@ -25,7 +25,8 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
             Card card = cardGenerator.Spawn();
-            battler.Hand.Add(card);
+            //Battlerを経由することで、Battlerの方でカードを認識できる
+            battler.SetCardToHand(card);
         }
         battler.Hand.ResetPositions();
     }

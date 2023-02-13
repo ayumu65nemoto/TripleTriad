@@ -21,7 +21,7 @@ public class BattlerHand : MonoBehaviour
     {
         for (int i = 0; i < list.Count; i++)
         {
-            float posY = (i - list.Count / 2f) * 1.5f + 1;
+            float posY = (i - list.Count / 2f) * 50f;
             list[i].transform.localPosition = new Vector3(0, posY);
         }
     }

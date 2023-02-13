@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Card : MonoBehaviour
@@ -34,6 +35,9 @@ public class Card : MonoBehaviour
     [SerializeField] Text numberRightText;
     [SerializeField] Text numberLeftText;
     [SerializeField] Image iconImage;
+
+    //ä÷êîÇìoò^Ç≈Ç´ÇÈ
+    public UnityAction<Card> OnSelectCard;
 
     public void Set()
     {
@@ -83,5 +87,10 @@ public class Card : MonoBehaviour
         {
             iconImage.sprite = _icons[7];
         }
+    }
+
+    public void OnSelecte()
+    {
+        OnSelectCard?.Invoke(this);
     }
 }
