@@ -16,18 +16,17 @@ public class GameManager : MonoBehaviour
     //カードを生成して配る
     void SetUp()
     {
-        for (int i = 0; i < 5; i++)
-        {
-            Card card = cardGenerator.Spawn();
-            player.Hand.Add(card);
-        }
-        player.Hand.ResetPositions();
+        SendCardsTo(player);
+        SendCardsTo(enemy);
+    }
 
+    void SendCardsTo(Battler battler)
+    {
         for (int i = 0; i < 5; i++)
         {
             Card card = cardGenerator.Spawn();
-            enemy.Hand.Add(card);
+            battler.Hand.Add(card);
         }
-        enemy.Hand.ResetPositions();
+        battler.Hand.ResetPositions();
     }
 }
