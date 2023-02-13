@@ -819,6 +819,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 268603992624939005}
+  - component: {fileID: -4038967972003885155}
   m_Layer: 0
   m_Name: Card
   m_TagString: Untagged
@@ -842,6 +843,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-4038967972003885155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268603992624939004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0f22ff47c3562f44b5d20688801b2e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _icons:
+  - {fileID: 21300000, guid: 694004b5f1dcc16428a27b6dada494e1, type: 3}
+  - {fileID: 21300000, guid: de79e7326a4f65048b8a69a4459e010f, type: 3}
+  - {fileID: 21300000, guid: e1468a0deb4895d42bec27d58d8b5569, type: 3}
+  - {fileID: 21300000, guid: 7f010587480824d4d8566e23744bbe29, type: 3}
+  - {fileID: 21300000, guid: 44a5bb2a08f46aa468a154feeaa5262b, type: 3}
+  - {fileID: 21300000, guid: e5b5b2f3a6778fd4dbbdad9e182a979c, type: 3}
+  - {fileID: 21300000, guid: 9450ff5925092534fa16430bdafc8c6b, type: 3}
+  - {fileID: 21300000, guid: 14e88b9d0b333ad4b9695cb6b3242995, type: 3}
+  numberTop: 0
+  numberBottom: 0
+  numberRight: 0
+  numberLeft: 0
+  icon: {fileID: 0}
+  cardElement: 0
+  numberTopText: {fileID: 268603991571950465}
+  numberBottomText: {fileID: 268603991193883176}
+  numberRightText: {fileID: 268603992162521838}
+  numberLeftText: {fileID: 268603991105733744}
+  iconImage: {fileID: 268603992645662523}
 --- !u!1 &268603992645662525
 GameObject:
   m_ObjectHideFlags: 0
