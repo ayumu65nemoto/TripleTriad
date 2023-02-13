@@ -22,5 +22,12 @@ public class GameManager : MonoBehaviour
             player.Hand.Add(card);
         }
         player.Hand.ResetPositions();
+
+        for (int i = 0; i < 5; i++)
+        {
+            Card card = cardGenerator.Spawn();
+            enemy.Hand.Add(card);
+        }
+        enemy.Hand.ResetPositions();
     }
 }
