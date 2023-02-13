@@ -5,18 +5,12 @@ using UnityEngine;
 public class CardGenerator : MonoBehaviour
 {
     [SerializeField] Card cardPrefab;
-    // Start is called before the first frame update
-    void Start()
-    {
-        for (int i = 0; i < 5; i++)
-        {
-            Spawn();
-        }
-    }
 
-    public void Spawn()
+    //ƒJ[ƒh‚Ì¶¬
+    public Card Spawn()
     {
         Card card = Instantiate(cardPrefab);
         card.Set();
+        return card;
     }
 }
