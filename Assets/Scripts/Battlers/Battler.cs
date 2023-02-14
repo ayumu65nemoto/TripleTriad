@@ -11,11 +11,5 @@ public class Battler : MonoBehaviour
     public void SetCardToHand(Card card)
     {
         hand.Add(card);
-        card.OnSelectCard = SelectedCard;
-    }
-
-    void SelectedCard(Card card)
-    {
-        
     }
 }

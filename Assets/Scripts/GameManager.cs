@@ -27,6 +27,16 @@ public class GameManager : MonoBehaviour
             Card card = cardGenerator.Spawn();
             //Battlerを経由することで、Battlerの方でカードを認識できる
             battler.SetCardToHand(card);
+
+            //どちらの手札にあるかによってタグを付ける
+            if (battler == player)
+            {
+                card.tag = "Player";
+            }
+            else if (battler == enemy)
+            {
+                card.tag = "Enemy";
+            }
         }
         battler.Hand.ResetPositions();
     }

@@ -87,10 +87,9 @@ public class Card : MonoBehaviour
         {
             iconImage.sprite = _icons[7];
         }
-    }
-
-    public void OnSelecte()
-    {
-        OnSelectCard?.Invoke(this);
+        else if (cardElement == CardElement.None)
+        {
+            iconImage.sprite = _icons[8];
+        }
     }
 }
