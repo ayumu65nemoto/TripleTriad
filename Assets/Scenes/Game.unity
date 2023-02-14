@@ -474,7 +474,6 @@ GameObject:
   - component: {fileID: 208758342}
   - component: {fileID: 208758341}
   - component: {fileID: 208758343}
-  - component: {fileID: 208758344}
   m_Layer: 5
   m_Name: CardPosition
   m_TagString: Untagged
@@ -552,20 +551,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e766f1fb600dedd4b856d98a11ef107e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &208758344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 208758339}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d097399f8f21c984ab493dc0e9aae52b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _cardMove: {fileID: 0}
-  _dropPlace: {fileID: 0}
 --- !u!1 &277695329
 GameObject:
   m_ObjectHideFlags: 0
