@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CardTop : MonoBehaviour
+
+public class CardBottom : MonoBehaviour
 {
     [SerializeField] private Card _myCard;
     [SerializeField] private GameObject _myCardObject;
     [SerializeField] private CardMove _cardMove;
-    public bool battleTop = true;
+    public bool battleBottom = true;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -16,17 +17,17 @@ public class CardTop : MonoBehaviour
         {
             if (collision.gameObject.tag == "Enemy")
             {
-                if (battleTop == true && _cardMove.setCard == true)
+                if (battleBottom == true && _cardMove.setCard == true)
                 {
                     GameObject _enemyCardObject = collision.gameObject;
                     Card _enemyCard = _enemyCardObject.GetComponent<Card>();
-                    if (_myCard.numberTop > _enemyCard.numberBottom)
+                    if (_myCard.numberBottom > _enemyCard.numberTop)
                     {
                         collision.gameObject.tag = "Player";
                         Transform canvas = _enemyCardObject.transform.Find("Canvas");
                         canvas.transform.Find("Frame").GetComponent<Image>().color = new Color32(0, 0, 255, 255);
                     }
-                    battleTop = false;
+                    battleBottom = false;
                 }
             }
         }
@@ -35,17 +36,17 @@ public class CardTop : MonoBehaviour
         {
             if (collision.gameObject.tag == "Player")
             {
-                if (battleTop == true && _cardMove.setCard == true)
+                if (battleBottom == true && _cardMove.setCard == true)
                 {
                     GameObject _enemyCardObject = collision.gameObject;
                     Card _enemyCard = _enemyCardObject.GetComponent<Card>();
-                    if (_myCard.numberTop > _enemyCard.numberBottom)
+                    if (_myCard.numberBottom > _enemyCard.numberTop)
                     {
                         collision.gameObject.tag = "Enemy";
                         Transform canvas = _enemyCardObject.transform.Find("Canvas");
                         canvas.transform.Find("Frame").GetComponent<Image>().color = new Color32(255, 0, 0, 255);
                     }
-                    battleTop = false;
+                    battleBottom = false;
                 }
             }
         }
