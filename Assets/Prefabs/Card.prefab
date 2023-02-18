@@ -899,6 +899,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultParent: {fileID: 0}
   setCard: 0
+  _gameManager: {fileID: 0}
 --- !u!225 &1221078643683369035
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1108,6 +1109,9 @@ MonoBehaviour:
   _myCard: {fileID: -4038967972003885155}
   _myCardObject: {fileID: 268603992624939004}
   _cardMove: {fileID: 7112043098761717677}
+  _cardTop: {fileID: 1612433109728774145}
+  _cardRight: {fileID: 6858596237046002882}
+  _cardLeft: {fileID: 96391471629884922}
   battleBottom: 1
 --- !u!1 &2544516998846389568
 GameObject:
@@ -1183,6 +1187,9 @@ MonoBehaviour:
   _myCard: {fileID: -4038967972003885155}
   _myCardObject: {fileID: 268603992624939004}
   _cardMove: {fileID: 7112043098761717677}
+  _cardTop: {fileID: 1612433109728774145}
+  _cardBottom: {fileID: 3232006148351234947}
+  _cardRight: {fileID: 6858596237046002882}
   battleLeft: 1
 --- !u!1 &4922706413975610212
 GameObject:
@@ -1258,6 +1265,9 @@ MonoBehaviour:
   _myCard: {fileID: -4038967972003885155}
   _myCardObject: {fileID: 268603992624939004}
   _cardMove: {fileID: 7112043098761717677}
+  _cardBottom: {fileID: 3232006148351234947}
+  _cardRight: {fileID: 6858596237046002882}
+  _cardLeft: {fileID: 96391471629884922}
   battleTop: 1
 --- !u!1 &7341703066568264269
 GameObject:
@@ -1333,6 +1343,9 @@ MonoBehaviour:
   _myCard: {fileID: -4038967972003885155}
   _myCardObject: {fileID: 268603992624939004}
   _cardMove: {fileID: 7112043098761717677}
+  _cardTop: {fileID: 1612433109728774145}
+  _cardBottom: {fileID: 3232006148351234947}
+  _cardLeft: {fileID: 96391471629884922}
   battleRight: 1
 --- !u!1 &8102071173283562052
 GameObject:

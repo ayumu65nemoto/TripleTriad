@@ -9,8 +9,11 @@ public class CardBottom : MonoBehaviour
     [SerializeField] private Card _myCard;
     [SerializeField] private GameObject _myCardObject;
     [SerializeField] private CardMove _cardMove;
+    [SerializeField] private CardTop _cardTop;
+    [SerializeField] private CardRight _cardRight;
+    [SerializeField] private CardLeft _cardLeft;
     public bool battleBottom = true;
-
+    
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (_myCardObject.tag == "Player")
@@ -28,6 +31,9 @@ public class CardBottom : MonoBehaviour
                         canvas.transform.Find("Frame").GetComponent<Image>().color = new Color32(0, 0, 255, 255);
                     }
                     battleBottom = false;
+                    _cardTop.battleTop = false;
+                    _cardRight.battleRight = false;
+                    _cardLeft.battleLeft = false;
                 }
             }
         }
@@ -47,6 +53,9 @@ public class CardBottom : MonoBehaviour
                         canvas.transform.Find("Frame").GetComponent<Image>().color = new Color32(255, 0, 0, 255);
                     }
                     battleBottom = false;
+                    _cardTop.battleTop = false;
+                    _cardRight.battleRight = false;
+                    _cardLeft.battleLeft = false;
                 }
             }
         }

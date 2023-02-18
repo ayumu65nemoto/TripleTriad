@@ -26,18 +26,28 @@ public class EnemyMove : MonoBehaviour
 
     //for文制御フラグ
     private bool _setFlag;
+    //既処理スルーフラグ
+    private bool _pos = true;
+    private bool _pos1 = true;
+    private bool _pos2 = true;
+    private bool _pos3 = true;
+    private bool _pos4 = true;
+    private bool _pos5 = true;
+    private bool _pos6 = true;
+    private bool _pos7 = true;
+    private bool _pos8 = true;
 
     private void Update()
     {
         if (_gameManager.turn == false)
         {
-            EnemyCardSet();
+            Invoke("EnemyCardSet", 1.0f);
         }
     }
 
     void EnemyCardSet()
     {
-        if (_cardPosition.GetComponent<DropPlace>().exist == true)
+        if (_cardPosition.GetComponent<DropPlace>().playerExist == true && _pos == true)
         {
             _setFlag = true;
             for (int i = 0; i < _enemyHandField.transform.childCount; i++)
@@ -59,8 +69,9 @@ public class EnemyMove : MonoBehaviour
                     _setFlag = false;
                 }
             }
+            _pos = false;
         }
-        else if (_cardPosition1.GetComponent<DropPlace>().exist == true)
+        else if (_cardPosition1.GetComponent<DropPlace>().playerExist == true)
         {
             _setFlag = true;
             for (int i = 0; i < _enemyHandField.transform.childCount; i++)
