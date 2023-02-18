@@ -170,6 +170,7 @@ MonoBehaviour:
   player: {fileID: 1927206744}
   enemy: {fileID: 1188078239}
   cardGenerator: {fileID: 425627685}
+  turn: 0
 --- !u!1 &147674532
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,6 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e766f1fb600dedd4b856d98a11ef107e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 139703732}
 --- !u!1 &176366591
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,6 +553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e766f1fb600dedd4b856d98a11ef107e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 139703732}
 --- !u!1 &277695329
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,6 +643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e766f1fb600dedd4b856d98a11ef107e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 139703732}
 --- !u!1 &425627684
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,6 +778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e766f1fb600dedd4b856d98a11ef107e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 139703732}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1015,6 +1020,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e766f1fb600dedd4b856d98a11ef107e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 139703732}
 --- !u!1 &889867318
 GameObject:
   m_ObjectHideFlags: 0
@@ -1104,6 +1110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e766f1fb600dedd4b856d98a11ef107e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 139703732}
 --- !u!1 &1188078238
 GameObject:
   m_ObjectHideFlags: 0
@@ -1238,6 +1245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e766f1fb600dedd4b856d98a11ef107e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 139703732}
 --- !u!1 &1401264429
 GameObject:
   m_ObjectHideFlags: 0
@@ -1416,6 +1424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e766f1fb600dedd4b856d98a11ef107e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 139703732}
 --- !u!1 &1818844920
 GameObject:
   m_ObjectHideFlags: 0
@@ -1492,6 +1501,91 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1818844920}
   m_CullTransparentMesh: 1
+--- !u!1 &1875277805
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1875277806}
+  - component: {fileID: 1875277807}
+  m_Layer: 0
+  m_Name: NPC
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1875277806
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875277805}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1875277807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875277805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b544ad2d52be33b4bafb94246afabf41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameManager: {fileID: 139703732}
+  _enemyHandField: {fileID: 1401264429}
+  _cardPosition: {fileID: 208758339}
+  _cardPosition1: {fileID: 1742740345}
+  _cardPosition2: {fileID: 147674532}
+  _cardPosition3: {fileID: 889867318}
+  _cardPosition4: {fileID: 440133586}
+  _cardPosition5: {fileID: 761987230}
+  _cardPosition6: {fileID: 277695329}
+  _cardPosition7: {fileID: 2070584981}
+  _cardPosition8: {fileID: 1380754788}
+  _cards:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _tops:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _bottoms:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _rights:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _lefts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1927206742
 GameObject:
   m_ObjectHideFlags: 0
@@ -1626,3 +1720,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e766f1fb600dedd4b856d98a11ef107e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 139703732}

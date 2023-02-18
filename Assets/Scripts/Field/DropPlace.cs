@@ -7,12 +7,14 @@ using UnityEngine.UI;
 public class DropPlace : MonoBehaviour, IDropHandler
 {
     //カード存在フラグ
-    private bool _exist = false;
+    public bool exist = false;
+    //ゲームマネージャー取得
+    [SerializeField] GameManager _gameManager;
 
     public void OnDrop(PointerEventData eventData)
     {
         CardMove card = eventData.pointerDrag.GetComponent<CardMove>();
-        if (card != null && card.setCard == false && _exist == false)
+        if (card != null && card.setCard == false && exist == false && _gameManager.turn == true)
         {
             //カードの親をフィールドに
             card.defaultParent = this.transform;
@@ -20,7 +22,9 @@ public class DropPlace : MonoBehaviour, IDropHandler
             card.transform.localPosition = Vector3.zero;
             //カード設置フラグとカード存在フラグを立てる
             card.setCard = true;
-            _exist = true;
+            exist = true;
+            //ターンを交代する
+            _gameManager.turn = !_gameManager.turn;
 
             //プレイヤーのカードなら青に、エネミーのカードなら赤に変える
             if (card.tag == "Player")

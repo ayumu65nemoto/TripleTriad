@@ -8,8 +8,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] Battler enemy;
     [SerializeField] CardGenerator cardGenerator;
 
+    public bool turn;
+
     private void Start()
     {
+        RandomBool();
         SetUp();
     }
 
@@ -39,5 +42,18 @@ public class GameManager : MonoBehaviour
             }
         }
         battler.Hand.ResetPositions();
+    }
+
+    void RandomBool()
+    {
+        int r = Random.Range(0, 2);
+        if (r == 0)
+        {
+            turn = true;
+        }
+        else
+        {
+            turn = false;
+        }
     }
 }

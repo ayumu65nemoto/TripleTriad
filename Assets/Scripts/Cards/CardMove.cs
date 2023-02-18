@@ -11,6 +11,8 @@ public class CardMove : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
     private Vector3 _currentPosition;
     //カード設置フラグ
     public bool setCard;
+    //ゲームマネージャー取得
+    [SerializeField] GameManager _gameManager;
 
     private void Start()
     {
@@ -18,6 +20,8 @@ public class CardMove : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
         _currentPosition = this.transform.position;
         //フラグリセット
         setCard = false;
+        //ゲームマネージャー取得
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -27,7 +31,7 @@ public class CardMove : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
         //レイをブロックする機能をオフ
         GetComponent<CanvasGroup>().blocksRaycasts = false;
 
-        if (setCard == false)
+        if (setCard == false && _gameManager.turn == true)
         {
             //親の親要素を親要素にする
             transform.SetParent(defaultParent.parent, false);
@@ -36,7 +40,7 @@ public class CardMove : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (setCard == false)
+        if (setCard == false && _gameManager.turn == true)
         {
             //マウス位置に移動
             transform.position = eventData.position;
