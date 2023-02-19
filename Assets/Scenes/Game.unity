@@ -170,7 +170,17 @@ MonoBehaviour:
   player: {fileID: 1927206744}
   enemy: {fileID: 1188078239}
   cardGenerator: {fileID: 425627685}
+  _cardPosition: {fileID: 208758339}
+  _cardPosition1: {fileID: 1742740345}
+  _cardPosition2: {fileID: 147674532}
+  _cardPosition3: {fileID: 889867318}
+  _cardPosition4: {fileID: 440133586}
+  _cardPosition5: {fileID: 761987230}
+  _cardPosition6: {fileID: 277695329}
+  _cardPosition7: {fileID: 2070584981}
+  _cardPosition8: {fileID: 1380754788}
   turn: 0
+  gameSet: 0
 --- !u!1 &147674532
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,7 +195,7 @@ GameObject:
   - component: {fileID: 147674536}
   m_Layer: 5
   m_Name: CardPosition2
-  m_TagString: Untagged
+  m_TagString: Field
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -260,6 +270,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e766f1fb600dedd4b856d98a11ef107e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exist: 0
+  playerExist: 0
   _gameManager: {fileID: 139703732}
 --- !u!1 &176366591
 GameObject:
@@ -478,7 +490,7 @@ GameObject:
   - component: {fileID: 208758343}
   m_Layer: 5
   m_Name: CardPosition
-  m_TagString: Untagged
+  m_TagString: Field
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -553,6 +565,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e766f1fb600dedd4b856d98a11ef107e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exist: 0
+  playerExist: 0
   _gameManager: {fileID: 139703732}
 --- !u!1 &277695329
 GameObject:
@@ -568,7 +582,7 @@ GameObject:
   - component: {fileID: 277695333}
   m_Layer: 5
   m_Name: CardPosition6
-  m_TagString: Untagged
+  m_TagString: Field
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -643,6 +657,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e766f1fb600dedd4b856d98a11ef107e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exist: 0
+  playerExist: 0
   _gameManager: {fileID: 139703732}
 --- !u!1 &425627684
 GameObject:
@@ -703,7 +719,7 @@ GameObject:
   - component: {fileID: 440133590}
   m_Layer: 5
   m_Name: CardPosition4
-  m_TagString: Untagged
+  m_TagString: Field
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -778,6 +794,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e766f1fb600dedd4b856d98a11ef107e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exist: 0
+  playerExist: 0
   _gameManager: {fileID: 139703732}
 --- !u!1 &519420028
 GameObject:
@@ -945,7 +963,7 @@ GameObject:
   - component: {fileID: 761987234}
   m_Layer: 5
   m_Name: CardPosition5
-  m_TagString: Untagged
+  m_TagString: Field
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1020,6 +1038,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e766f1fb600dedd4b856d98a11ef107e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exist: 0
+  playerExist: 0
   _gameManager: {fileID: 139703732}
 --- !u!1 &889867318
 GameObject:
@@ -1035,7 +1055,7 @@ GameObject:
   - component: {fileID: 889867322}
   m_Layer: 5
   m_Name: CardPosition3
-  m_TagString: Untagged
+  m_TagString: Field
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1110,6 +1130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e766f1fb600dedd4b856d98a11ef107e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exist: 0
+  playerExist: 0
   _gameManager: {fileID: 139703732}
 --- !u!1 &1188078238
 GameObject:
@@ -1170,7 +1192,7 @@ GameObject:
   - component: {fileID: 1380754792}
   m_Layer: 5
   m_Name: CardPosition8
-  m_TagString: Untagged
+  m_TagString: Field
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1245,6 +1267,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e766f1fb600dedd4b856d98a11ef107e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exist: 0
+  playerExist: 0
   _gameManager: {fileID: 139703732}
 --- !u!1 &1401264429
 GameObject:
@@ -1349,7 +1373,7 @@ GameObject:
   - component: {fileID: 1742740349}
   m_Layer: 5
   m_Name: CardPosition1
-  m_TagString: Untagged
+  m_TagString: Field
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1424,6 +1448,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e766f1fb600dedd4b856d98a11ef107e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exist: 0
+  playerExist: 0
   _gameManager: {fileID: 139703732}
 --- !u!1 &1818844920
 GameObject:
@@ -1562,30 +1588,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _tops:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _bottoms:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _rights:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _lefts:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1 &1927206742
 GameObject:
   m_ObjectHideFlags: 0
@@ -1645,7 +1647,7 @@ GameObject:
   - component: {fileID: 2070584985}
   m_Layer: 5
   m_Name: CardPosition7
-  m_TagString: Untagged
+  m_TagString: Field
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1720,4 +1722,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e766f1fb600dedd4b856d98a11ef107e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exist: 0
+  playerExist: 0
   _gameManager: {fileID: 139703732}

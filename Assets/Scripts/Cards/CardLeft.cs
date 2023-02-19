@@ -28,6 +28,8 @@ public class CardLeft : MonoBehaviour
                         collision.gameObject.tag = "Player";
                         Transform canvas = _enemyCardObject.transform.Find("Canvas");
                         canvas.transform.Find("Frame").GetComponent<Image>().color = new Color32(0, 0, 255, 255);
+                        GameObject field = _enemyCardObject.transform.parent.gameObject;
+                        field.GetComponent<DropPlace>().playerExist = true;
                     }
                     battleLeft = false;
                     _cardTop.battleTop = false;
@@ -50,6 +52,8 @@ public class CardLeft : MonoBehaviour
                         collision.gameObject.tag = "Enemy";
                         Transform canvas = _enemyCardObject.transform.Find("Canvas");
                         canvas.transform.Find("Frame").GetComponent<Image>().color = new Color32(255, 0, 0, 255);
+                        GameObject field = _enemyCardObject.transform.parent.gameObject;
+                        field.GetComponent<DropPlace>().playerExist = false;
                     }
                     battleLeft = false;
                     _cardTop.battleTop = false;

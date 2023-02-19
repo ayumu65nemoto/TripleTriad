@@ -19,13 +19,11 @@ public class EnemyMove : MonoBehaviour
 
     //変数格納用
     [SerializeField] private GameObject[] _cards;
-    //[SerializeField] private GameObject[] _tops;
-    //[SerializeField] private GameObject[] _bottoms;
-    //[SerializeField] private GameObject[] _rights;
-    //[SerializeField] private GameObject[] _lefts;
 
     //for文制御フラグ
     private bool _setFlag;
+    //EnemyCardSetが１ターンに何度も呼ばれてしまうのを防ぐ
+    private bool _once = true;
     //既処理スルーフラグ
     private bool _pos = true;
     private bool _pos1 = true;
@@ -36,12 +34,17 @@ public class EnemyMove : MonoBehaviour
     private bool _pos6 = true;
     private bool _pos7 = true;
     private bool _pos8 = true;
+    private bool _posStart = true;
 
     private void Update()
     {
-        if (_gameManager.turn == false)
+        if (_gameManager.turn == false && _gameManager.gameSet == false)
         {
-            Invoke("EnemyCardSet", 1.0f);
+            if (_once == true)
+            {
+                Invoke("EnemyCardSet", 1.0f);
+                _once = false;
+            }
         }
     }
 
@@ -69,9 +72,24 @@ public class EnemyMove : MonoBehaviour
                     _setFlag = false;
                 }
             }
+            int rand = Random.Range(0, _enemyHandField.transform.childCount);
+            _cards[rand] = _enemyHandField.transform.GetChild(rand).gameObject;
+            GameObject[] positions = { _cardPosition, _cardPosition1, _cardPosition2, _cardPosition3, _cardPosition4, _cardPosition5, _cardPosition6, _cardPosition7, _cardPosition8 };
+            while (_setFlag == true)
+            {
+                GameObject selectPosition = positions[Random.Range(0, positions.Length)];
+                DropPlace dropPlace = selectPosition.GetComponent<DropPlace>();
+                if (dropPlace.exist == false)
+                {
+                    dropPlace.exist = true;
+                    EnemySetCard(_cards[rand], selectPosition);
+                    _setFlag = false;
+                    Debug.Log("count");
+                }
+            }
             _pos = false;
         }
-        else if (_cardPosition1.GetComponent<DropPlace>().playerExist == true)
+        else if (_cardPosition1.GetComponent<DropPlace>().playerExist == true && _pos1 == true)
         {
             _setFlag = true;
             for (int i = 0; i < _enemyHandField.transform.childCount; i++)
@@ -100,47 +118,364 @@ public class EnemyMove : MonoBehaviour
                     _setFlag = false;
                 }
             }
+            int rand = Random.Range(0, _enemyHandField.transform.childCount);
+            _cards[rand] = _enemyHandField.transform.GetChild(rand).gameObject;
+            GameObject[] positions = { _cardPosition, _cardPosition1, _cardPosition2, _cardPosition3, _cardPosition4, _cardPosition5, _cardPosition6, _cardPosition7, _cardPosition8 };
+            while (_setFlag == true)
+            {
+                GameObject selectPosition = positions[Random.Range(0, positions.Length)];
+                DropPlace dropPlace = selectPosition.GetComponent<DropPlace>();
+                if (dropPlace.exist == false)
+                {
+                    dropPlace.exist = true;
+                    EnemySetCard(_cards[rand], selectPosition);
+                    _setFlag = false;
+                    Debug.Log("count");
+                }
+            }
+            _pos1 = false;
         }
-        else if (_cardPosition2.transform != null)
+        else if (_cardPosition2.GetComponent<DropPlace>().playerExist == true && _pos2 == true)
         {
-
-        }
-        else if (_cardPosition3.transform != null)
-        {
-
-        }
-        else if (_cardPosition4.transform != null)
-        {
-            
-        }
-        else if (_cardPosition5.transform != null)
-        {
-
-        }
-        else if (_cardPosition6.transform != null)
-        {
-
-        }
-        else if (_cardPosition7.transform != null)
-        {
-
-        }
-        else if (_cardPosition8.transform != null)
-        {
-
-        }
-        else
-        {
+            _setFlag = true;
             for (int i = 0; i < _enemyHandField.transform.childCount; i++)
             {
+                Card card = _cardPosition2.transform.GetChild(0).gameObject.GetComponent<Card>();
                 _cards[i] = _enemyHandField.transform.GetChild(i).gameObject;
-                _cards[i].transform.position = new Vector3(440, 310);
+                if (_cards[i].GetComponent<Card>().numberRight > card.numberLeft && _cardPosition5.GetComponent<DropPlace>().exist == false && _setFlag == true)
+                {
+                    DropPlace dropPlace = _cardPosition5.GetComponent<DropPlace>();
+                    dropPlace.exist = true;
+                    EnemySetCard(_cards[i], _cardPosition5);
+                    _setFlag = false;
+                }
+                else if (_cards[i].GetComponent<Card>().numberBottom > card.numberTop && _cardPosition1.GetComponent<DropPlace>().exist == false && _setFlag == true)
+                {
+                    DropPlace dropPlace = _cardPosition1.GetComponent<DropPlace>();
+                    dropPlace.exist = true;
+                    EnemySetCard(_cards[i], _cardPosition1);
+                    _setFlag = false;
+                }
             }
+            int rand = Random.Range(0, _enemyHandField.transform.childCount);
+            _cards[rand] = _enemyHandField.transform.GetChild(rand).gameObject;
+            GameObject[] positions = { _cardPosition, _cardPosition1, _cardPosition2, _cardPosition3, _cardPosition4, _cardPosition5, _cardPosition6, _cardPosition7, _cardPosition8 };
+            while (_setFlag == true)
+            {
+                GameObject selectPosition = positions[Random.Range(0, positions.Length)];
+                DropPlace dropPlace = selectPosition.GetComponent<DropPlace>();
+                if (dropPlace.exist == false)
+                {
+                    dropPlace.exist = true;
+                    EnemySetCard(_cards[rand], selectPosition);
+                    _setFlag = false;
+                    Debug.Log("count");
+                }
+            }
+            _pos2 = false;
+        }
+        else if (_cardPosition3.GetComponent<DropPlace>().playerExist == true && _pos3 == true)
+        {
+            _setFlag = true;
+            for (int i = 0; i < _enemyHandField.transform.childCount; i++)
+            {
+                Card card = _cardPosition3.transform.GetChild(0).gameObject.GetComponent<Card>();
+                _cards[i] = _enemyHandField.transform.GetChild(i).gameObject;
+                if (_cards[i].GetComponent<Card>().numberRight > card.numberLeft && _cardPosition6.GetComponent<DropPlace>().exist == false && _setFlag == true)
+                {
+                    DropPlace dropPlace = _cardPosition6.GetComponent<DropPlace>();
+                    dropPlace.exist = true;
+                    EnemySetCard(_cards[i], _cardPosition6);
+                    _setFlag = false;
+                }
+                else if (_cards[i].GetComponent<Card>().numberTop > card.numberBottom && _cardPosition4.GetComponent<DropPlace>().exist == false && _setFlag == true)
+                {
+                    DropPlace dropPlace = _cardPosition4.GetComponent<DropPlace>();
+                    dropPlace.exist = true;
+                    EnemySetCard(_cards[i], _cardPosition4);
+                    _setFlag = false;
+                }
+                else if (_cards[i].GetComponent<Card>().numberLeft > card.numberRight && _cardPosition.GetComponent<DropPlace>().exist == false && _setFlag == true)
+                {
+                    DropPlace dropPlace = _cardPosition.GetComponent<DropPlace>();
+                    dropPlace.exist = true;
+                    EnemySetCard(_cards[i], _cardPosition);
+                    _setFlag = false;
+                }
+            }
+            int rand = Random.Range(0, _enemyHandField.transform.childCount);
+            _cards[rand] = _enemyHandField.transform.GetChild(rand).gameObject;
+            GameObject[] positions = { _cardPosition, _cardPosition1, _cardPosition2, _cardPosition3, _cardPosition4, _cardPosition5, _cardPosition6, _cardPosition7, _cardPosition8 };
+            while (_setFlag == true)
+            {
+                GameObject selectPosition = positions[Random.Range(0, positions.Length)];
+                DropPlace dropPlace = selectPosition.GetComponent<DropPlace>();
+                if (dropPlace.exist == false)
+                {
+                    dropPlace.exist = true;
+                    EnemySetCard(_cards[rand], selectPosition);
+                    _setFlag = false;
+                    Debug.Log("count");
+                }
+            }
+            _pos3 = false;
+        }
+        else if (_cardPosition4.GetComponent<DropPlace>().playerExist == true && _pos4 == true)
+        {
+            _setFlag = true;
+            for (int i = 0; i < _enemyHandField.transform.childCount; i++)
+            {
+                Card card = _cardPosition4.transform.GetChild(0).gameObject.GetComponent<Card>();
+                _cards[i] = _enemyHandField.transform.GetChild(i).gameObject;
+                if (_cards[i].GetComponent<Card>().numberRight > card.numberLeft && _cardPosition7.GetComponent<DropPlace>().exist == false && _setFlag == true)
+                {
+                    DropPlace dropPlace = _cardPosition7.GetComponent<DropPlace>();
+                    dropPlace.exist = true;
+                    EnemySetCard(_cards[i], _cardPosition7);
+                    _setFlag = false;
+                }
+                else if (_cards[i].GetComponent<Card>().numberTop > card.numberBottom && _cardPosition5.GetComponent<DropPlace>().exist == false && _setFlag == true)
+                {
+                    DropPlace dropPlace = _cardPosition5.GetComponent<DropPlace>();
+                    dropPlace.exist = true;
+                    EnemySetCard(_cards[i], _cardPosition5);
+                    _setFlag = false;
+                }
+                else if (_cards[i].GetComponent<Card>().numberBottom > card.numberTop && _cardPosition3.GetComponent<DropPlace>().exist == false && _setFlag == true)
+                {
+                    DropPlace dropPlace = _cardPosition3.GetComponent<DropPlace>();
+                    dropPlace.exist = true;
+                    EnemySetCard(_cards[i], _cardPosition3);
+                    _setFlag = false;
+                }
+                else if (_cards[i].GetComponent<Card>().numberLeft > card.numberRight && _cardPosition1.GetComponent<DropPlace>().exist == false && _setFlag == true)
+                {
+                    DropPlace dropPlace = _cardPosition1.GetComponent<DropPlace>();
+                    dropPlace.exist = true;
+                    EnemySetCard(_cards[i], _cardPosition1);
+                    _setFlag = false;
+                }
+            }
+            int rand = Random.Range(0, _enemyHandField.transform.childCount);
+            _cards[rand] = _enemyHandField.transform.GetChild(rand).gameObject;
+            GameObject[] positions = { _cardPosition, _cardPosition1, _cardPosition2, _cardPosition3, _cardPosition4, _cardPosition5, _cardPosition6, _cardPosition7, _cardPosition8 };
+            while (_setFlag == true)
+            {
+                GameObject selectPosition = positions[Random.Range(0, positions.Length)];
+                DropPlace dropPlace = selectPosition.GetComponent<DropPlace>();
+                if (dropPlace.exist == false)
+                {
+                    dropPlace.exist = true;
+                    EnemySetCard(_cards[rand], selectPosition);
+                    _setFlag = false;
+                    Debug.Log("count");
+                }
+            }
+            _pos4 = false;
+        }
+        else if (_cardPosition5.GetComponent<DropPlace>().playerExist == true && _pos5 == true)
+        {
+            _setFlag = true;
+            for (int i = 0; i < _enemyHandField.transform.childCount; i++)
+            {
+                Card card = _cardPosition5.transform.GetChild(0).gameObject.GetComponent<Card>();
+                _cards[i] = _enemyHandField.transform.GetChild(i).gameObject;
+                if (_cards[i].GetComponent<Card>().numberRight > card.numberLeft && _cardPosition8.GetComponent<DropPlace>().exist == false && _setFlag == true)
+                {
+                    DropPlace dropPlace = _cardPosition8.GetComponent<DropPlace>();
+                    dropPlace.exist = true;
+                    EnemySetCard(_cards[i], _cardPosition8);
+                    _setFlag = false;
+                }
+                else if (_cards[i].GetComponent<Card>().numberBottom > card.numberTop && _cardPosition4.GetComponent<DropPlace>().exist == false && _setFlag == true)
+                {
+                    DropPlace dropPlace = _cardPosition4.GetComponent<DropPlace>();
+                    dropPlace.exist = true;
+                    EnemySetCard(_cards[i], _cardPosition4);
+                    _setFlag = false;
+                }
+                else if (_cards[i].GetComponent<Card>().numberLeft > card.numberRight && _cardPosition2.GetComponent<DropPlace>().exist == false && _setFlag == true)
+                {
+                    DropPlace dropPlace = _cardPosition2.GetComponent<DropPlace>();
+                    dropPlace.exist = true;
+                    EnemySetCard(_cards[i], _cardPosition2);
+                    _setFlag = false;
+                }
+            }
+            int rand = Random.Range(0, _enemyHandField.transform.childCount);
+            _cards[rand] = _enemyHandField.transform.GetChild(rand).gameObject;
+            GameObject[] positions = { _cardPosition, _cardPosition1, _cardPosition2, _cardPosition3, _cardPosition4, _cardPosition5, _cardPosition6, _cardPosition7, _cardPosition8 };
+            while (_setFlag == true)
+            {
+                GameObject selectPosition = positions[Random.Range(0, positions.Length)];
+                DropPlace dropPlace = selectPosition.GetComponent<DropPlace>();
+                if (dropPlace.exist == false)
+                {
+                    dropPlace.exist = true;
+                    EnemySetCard(_cards[rand], selectPosition);
+                    _setFlag = false;
+                    Debug.Log("count");
+                }
+            }
+            _pos5 = false;
+        }
+        else if (_cardPosition6.GetComponent<DropPlace>().playerExist == true && _pos6 == true)
+        {
+            _setFlag = true;
+            for (int i = 0; i < _enemyHandField.transform.childCount; i++)
+            {
+                Card card = _cardPosition6.transform.GetChild(0).gameObject.GetComponent<Card>();
+                _cards[i] = _enemyHandField.transform.GetChild(i).gameObject;
+                if (_cards[i].GetComponent<Card>().numberTop > card.numberBottom && _cardPosition7.GetComponent<DropPlace>().exist == false && _setFlag == true)
+                {
+                    DropPlace dropPlace = _cardPosition7.GetComponent<DropPlace>();
+                    dropPlace.exist = true;
+                    EnemySetCard(_cards[i], _cardPosition7);
+                    _setFlag = false;
+                }
+                else if (_cards[i].GetComponent<Card>().numberLeft > card.numberRight && _cardPosition3.GetComponent<DropPlace>().exist == false && _setFlag == true)
+                {
+                    DropPlace dropPlace = _cardPosition3.GetComponent<DropPlace>();
+                    dropPlace.exist = true;
+                    EnemySetCard(_cards[i], _cardPosition3);
+                    _setFlag = false;
+                }
+            }
+            int rand = Random.Range(0, _enemyHandField.transform.childCount);
+            _cards[rand] = _enemyHandField.transform.GetChild(rand).gameObject;
+            GameObject[] positions = { _cardPosition, _cardPosition1, _cardPosition2, _cardPosition3, _cardPosition4, _cardPosition5, _cardPosition6, _cardPosition7, _cardPosition8 };
+            while (_setFlag == true)
+            {
+                GameObject selectPosition = positions[Random.Range(0, positions.Length)];
+                DropPlace dropPlace = selectPosition.GetComponent<DropPlace>();
+                if (dropPlace.exist == false)
+                {
+                    dropPlace.exist = true;
+                    EnemySetCard(_cards[rand], selectPosition);
+                    _setFlag = false;
+                    Debug.Log("count");
+                }
+            }
+            _pos6 = false;
+        }
+        else if (_cardPosition7.GetComponent<DropPlace>().playerExist == true && _pos7 == true)
+        {
+            _setFlag = true;
+            for (int i = 0; i < _enemyHandField.transform.childCount; i++)
+            {
+                Card card = _cardPosition7.transform.GetChild(0).gameObject.GetComponent<Card>();
+                _cards[i] = _enemyHandField.transform.GetChild(i).gameObject;
+                if (_cards[i].GetComponent<Card>().numberTop > card.numberBottom && _cardPosition8.GetComponent<DropPlace>().exist == false && _setFlag == true)
+                {
+                    DropPlace dropPlace = _cardPosition8.GetComponent<DropPlace>();
+                    dropPlace.exist = true;
+                    EnemySetCard(_cards[i], _cardPosition8);
+                    _setFlag = false;
+                }
+                else if (_cards[i].GetComponent<Card>().numberBottom > card.numberTop && _cardPosition6.GetComponent<DropPlace>().exist == false && _setFlag == true)
+                {
+                    DropPlace dropPlace = _cardPosition6.GetComponent<DropPlace>();
+                    dropPlace.exist = true;
+                    EnemySetCard(_cards[i], _cardPosition6);
+                    _setFlag = false;
+                }
+                else if (_cards[i].GetComponent<Card>().numberLeft > card.numberRight && _cardPosition4.GetComponent<DropPlace>().exist == false && _setFlag == true)
+                {
+                    DropPlace dropPlace = _cardPosition4.GetComponent<DropPlace>();
+                    dropPlace.exist = true;
+                    EnemySetCard(_cards[i], _cardPosition4);
+                    _setFlag = false;
+                }
+            }
+            int rand = Random.Range(0, _enemyHandField.transform.childCount);
+            _cards[rand] = _enemyHandField.transform.GetChild(rand).gameObject;
+            GameObject[] positions = { _cardPosition, _cardPosition1, _cardPosition2, _cardPosition3, _cardPosition4, _cardPosition5, _cardPosition6, _cardPosition7, _cardPosition8 };
+            while (_setFlag == true)
+            {
+                GameObject selectPosition = positions[Random.Range(0, positions.Length)];
+                DropPlace dropPlace = selectPosition.GetComponent<DropPlace>();
+                if (dropPlace.exist == false)
+                {
+                    dropPlace.exist = true;
+                    EnemySetCard(_cards[rand], selectPosition);
+                    _setFlag = false;
+                    Debug.Log("count");
+                }
+            }
+            _pos7 = false;
+        }
+        else if (_cardPosition8.GetComponent<DropPlace>().playerExist == true && _pos8 == true)
+        {
+            _setFlag = true;
+            for (int i = 0; i < _enemyHandField.transform.childCount; i++)
+            {
+                Card card = _cardPosition8.transform.GetChild(0).gameObject.GetComponent<Card>();
+                _cards[i] = _enemyHandField.transform.GetChild(i).gameObject;
+                if (_cards[i].GetComponent<Card>().numberBottom > card.numberTop && _cardPosition7.GetComponent<DropPlace>().exist == false && _setFlag == true)
+                {
+                    DropPlace dropPlace = _cardPosition7.GetComponent<DropPlace>();
+                    dropPlace.exist = true;
+                    EnemySetCard(_cards[i], _cardPosition7);
+                    _setFlag = false;
+                }
+                else if (_cards[i].GetComponent<Card>().numberLeft > card.numberRight && _cardPosition5.GetComponent<DropPlace>().exist == false && _setFlag == true)
+                {
+                    DropPlace dropPlace = _cardPosition5.GetComponent<DropPlace>();
+                    dropPlace.exist = true;
+                    EnemySetCard(_cards[i], _cardPosition5);
+                    _setFlag = false;
+                }
+            }
+            int rand = Random.Range(0, _enemyHandField.transform.childCount);
+            _cards[rand] = _enemyHandField.transform.GetChild(rand).gameObject;
+            GameObject[] positions = { _cardPosition, _cardPosition1, _cardPosition2, _cardPosition3, _cardPosition4, _cardPosition5, _cardPosition6, _cardPosition7, _cardPosition8 };
+            while (_setFlag == true)
+            {
+                GameObject selectPosition = positions[Random.Range(0, positions.Length)];
+                DropPlace dropPlace = selectPosition.GetComponent<DropPlace>();
+                if (dropPlace.exist == false)
+                {
+                    dropPlace.exist = true;
+                    EnemySetCard(_cards[rand], selectPosition);
+                    _setFlag = false;
+                    Debug.Log("count");
+                }
+            }
+            _pos8 = false;
+        }
+        else if(_posStart == true)
+        {
+            _setFlag = true;
+            int rand = Random.Range(0, _enemyHandField.transform.childCount);
+            _cards[rand] = _enemyHandField.transform.GetChild(rand).gameObject;
+            GameObject[] positions = { _cardPosition, _cardPosition1, _cardPosition2, _cardPosition3, _cardPosition4, _cardPosition5, _cardPosition6, _cardPosition7, _cardPosition8 };
+            while (_setFlag == true)
+            {
+                GameObject selectPosition = positions[Random.Range(0, positions.Length)];
+                DropPlace dropPlace = selectPosition.GetComponent<DropPlace>();
+                if (dropPlace.exist == false)
+                {
+                    dropPlace.exist = true;
+                    EnemySetCard(_cards[rand], selectPosition);
+                    _setFlag = false;
+                    CardTop cardTop = _cards[rand].transform.GetChild(1).gameObject.GetComponent<CardTop>();
+                    CardBottom cardBottom = _cards[rand].transform.GetChild(2).gameObject.GetComponent<CardBottom>();
+                    CardRight cardRight = _cards[rand].transform.GetChild(3).gameObject.GetComponent<CardRight>();
+                    CardLeft cardLeft = _cards[rand].transform.GetChild(4).gameObject.GetComponent<CardLeft>();
+                    cardTop.battleTop = false;
+                    cardBottom.battleBottom = false;
+                    cardRight.battleRight = false;
+                    cardLeft.battleLeft = false;
+                    Debug.Log("count");
+                }
+            }
+            _posStart = false;
         }
     }
 
     private void EnemySetCard(GameObject gameObject, GameObject gameObject1)
     {
+        Debug.Log("set");
         //カードの親をフィールドに
         gameObject.transform.SetParent(gameObject1.transform);
         //カードの位置を親(フィールド)の０の位置に設定
@@ -149,6 +484,8 @@ public class EnemyMove : MonoBehaviour
         gameObject.GetComponent<CardMove>().setCard = true;
         //ターンを交代する
         _gameManager.turn = !_gameManager.turn;
+        //onceフラグを立てる
+        _once = true;
 
         //プレイヤーのカードなら青に、エネミーのカードなら赤に変える
         if (gameObject.tag == "Player")
