@@ -11,6 +11,34 @@ public class DropPlace : MonoBehaviour, IDropHandler
     public bool playerExist = false;
     //ゲームマネージャー取得
     [SerializeField] GameManager _gameManager;
+    ////最初のターンを記憶
+    //private bool _firstTurn;
+
+    //void Start()
+    //{
+    //    _firstTurn = _gameManager.turn;
+    //}
+
+    //void Update()
+    //{
+    //    if (exist == true)
+    //    {
+    //        if (_firstTurn != _gameManager.turn)
+    //        {
+    //            GameObject card = transform.GetChild(0).gameObject;
+    //            CardTop cardTop = card.transform.GetChild(1).gameObject.GetComponent<CardTop>();
+    //            CardBottom cardBottom = card.transform.GetChild(2).gameObject.GetComponent<CardBottom>();
+    //            CardRight cardRight = card.transform.GetChild(3).gameObject.GetComponent<CardRight>();
+    //            CardLeft cardLeft = card.transform.GetChild(4).gameObject.GetComponent<CardLeft>();
+    //            cardTop.battleTop = false;
+    //            cardBottom.battleBottom = false;
+    //            cardRight.battleRight = false;
+    //            cardLeft.battleLeft = false;
+    //            Debug.Log(cardLeft.battleLeft);
+    //            _firstTurn = _gameManager.turn;
+    //        }
+    //    }
+    //}
 
     public void OnDrop(PointerEventData eventData)
     {

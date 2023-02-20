@@ -36,6 +36,20 @@ public class EnemyMove : MonoBehaviour
     private bool _pos8 = true;
     private bool _posStart = true;
 
+    //カードを置く位置
+    private Vector3 _card = new Vector3(90, 120, 0);
+    private Vector3 _card1 = new Vector3(90, 0, 0);
+    private Vector3 _card2 = new Vector3(90, -120, 0);
+    private Vector3 _card3 = new Vector3(0, 120, 0);
+    private Vector3 _card4 = new Vector3(0, 0, 0);
+    private Vector3 _card5 = new Vector3(0, -120, 0);
+    private Vector3 _card6 = new Vector3(-90, 120, 0);
+    private Vector3 _card7 = new Vector3(-90, 0, 0);
+    private Vector3 _card8 = new Vector3(-90, -120, 0);
+    private Vector3[] _cardsPos = { new Vector3(90, 120, 0), new Vector3(90, 0, 0), new Vector3(90, -120, 0), 
+                                    new Vector3(0, 120, 0), new Vector3(0, 0, 0), new Vector3(0, -120, 0),
+                                    new Vector3(-90, 120, 0), new Vector3(-90, 0, 0), new Vector3(-90, -120, 0) };
+
     private void Update()
     {
         if (_gameManager.turn == false && _gameManager.gameSet == false)
@@ -61,14 +75,14 @@ public class EnemyMove : MonoBehaviour
                 {
                     DropPlace dropPlace = _cardPosition3.GetComponent<DropPlace>();
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[i], _cardPosition3);
+                    EnemySetCard(_cards[i], _cardPosition3, _cardsPos[3]);
                     _setFlag = false;
                 }
                 else if (_cards[i].GetComponent<Card>().numberTop > card.numberBottom && _cardPosition1.GetComponent<DropPlace>().exist == false && _setFlag == true)
                 {
                     DropPlace dropPlace = _cardPosition1.GetComponent<DropPlace>();
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[i], _cardPosition1);
+                    EnemySetCard(_cards[i], _cardPosition1, _cardsPos[1]);
                     _setFlag = false;
                 }
             }
@@ -77,12 +91,13 @@ public class EnemyMove : MonoBehaviour
             GameObject[] positions = { _cardPosition, _cardPosition1, _cardPosition2, _cardPosition3, _cardPosition4, _cardPosition5, _cardPosition6, _cardPosition7, _cardPosition8 };
             while (_setFlag == true)
             {
-                GameObject selectPosition = positions[Random.Range(0, positions.Length)];
+                int randam = Random.Range(0, positions.Length);
+                GameObject selectPosition = positions[randam];
                 DropPlace dropPlace = selectPosition.GetComponent<DropPlace>();
                 if (dropPlace.exist == false)
                 {
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[rand], selectPosition);
+                    EnemySetCard(_cards[rand], selectPosition, _cardsPos[randam]);
                     _setFlag = false;
                     Debug.Log("count");
                 }
@@ -100,21 +115,21 @@ public class EnemyMove : MonoBehaviour
                 {
                     DropPlace dropPlace = _cardPosition4.GetComponent<DropPlace>();
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[i], _cardPosition4);
+                    EnemySetCard(_cards[i], _cardPosition4, _cardsPos[4]);
                     _setFlag = false;
                 }
                 else if (_cards[i].GetComponent<Card>().numberTop > card.numberBottom && _cardPosition2.GetComponent<DropPlace>().exist == false && _setFlag == true)
                 {
                     DropPlace dropPlace = _cardPosition2.GetComponent<DropPlace>();
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[i], _cardPosition2);
+                    EnemySetCard(_cards[i], _cardPosition2, _cardsPos[2]);
                     _setFlag = false;
                 }
                 else if (_cards[i].GetComponent<Card>().numberBottom > card.numberTop && _cardPosition.GetComponent<DropPlace>().exist == false && _setFlag == true)
                 {
                     DropPlace dropPlace = _cardPosition.GetComponent<DropPlace>();
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[i], _cardPosition);
+                    EnemySetCard(_cards[i], _cardPosition, _cardsPos[0]);
                     _setFlag = false;
                 }
             }
@@ -123,12 +138,13 @@ public class EnemyMove : MonoBehaviour
             GameObject[] positions = { _cardPosition, _cardPosition1, _cardPosition2, _cardPosition3, _cardPosition4, _cardPosition5, _cardPosition6, _cardPosition7, _cardPosition8 };
             while (_setFlag == true)
             {
-                GameObject selectPosition = positions[Random.Range(0, positions.Length)];
+                int randam = Random.Range(0, positions.Length);
+                GameObject selectPosition = positions[randam];
                 DropPlace dropPlace = selectPosition.GetComponent<DropPlace>();
                 if (dropPlace.exist == false)
                 {
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[rand], selectPosition);
+                    EnemySetCard(_cards[rand], selectPosition, _cardsPos[randam]);
                     _setFlag = false;
                     Debug.Log("count");
                 }
@@ -146,14 +162,14 @@ public class EnemyMove : MonoBehaviour
                 {
                     DropPlace dropPlace = _cardPosition5.GetComponent<DropPlace>();
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[i], _cardPosition5);
+                    EnemySetCard(_cards[i], _cardPosition5, _cardsPos[5]);
                     _setFlag = false;
                 }
                 else if (_cards[i].GetComponent<Card>().numberBottom > card.numberTop && _cardPosition1.GetComponent<DropPlace>().exist == false && _setFlag == true)
                 {
                     DropPlace dropPlace = _cardPosition1.GetComponent<DropPlace>();
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[i], _cardPosition1);
+                    EnemySetCard(_cards[i], _cardPosition1, _cardsPos[1]);
                     _setFlag = false;
                 }
             }
@@ -162,12 +178,13 @@ public class EnemyMove : MonoBehaviour
             GameObject[] positions = { _cardPosition, _cardPosition1, _cardPosition2, _cardPosition3, _cardPosition4, _cardPosition5, _cardPosition6, _cardPosition7, _cardPosition8 };
             while (_setFlag == true)
             {
-                GameObject selectPosition = positions[Random.Range(0, positions.Length)];
+                int randam = Random.Range(0, positions.Length);
+                GameObject selectPosition = positions[randam];
                 DropPlace dropPlace = selectPosition.GetComponent<DropPlace>();
                 if (dropPlace.exist == false)
                 {
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[rand], selectPosition);
+                    EnemySetCard(_cards[rand], selectPosition, _cardsPos[randam]);
                     _setFlag = false;
                     Debug.Log("count");
                 }
@@ -185,21 +202,21 @@ public class EnemyMove : MonoBehaviour
                 {
                     DropPlace dropPlace = _cardPosition6.GetComponent<DropPlace>();
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[i], _cardPosition6);
+                    EnemySetCard(_cards[i], _cardPosition6, _cardsPos[6]);
                     _setFlag = false;
                 }
                 else if (_cards[i].GetComponent<Card>().numberTop > card.numberBottom && _cardPosition4.GetComponent<DropPlace>().exist == false && _setFlag == true)
                 {
                     DropPlace dropPlace = _cardPosition4.GetComponent<DropPlace>();
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[i], _cardPosition4);
+                    EnemySetCard(_cards[i], _cardPosition4, _cardsPos[4]);
                     _setFlag = false;
                 }
                 else if (_cards[i].GetComponent<Card>().numberLeft > card.numberRight && _cardPosition.GetComponent<DropPlace>().exist == false && _setFlag == true)
                 {
                     DropPlace dropPlace = _cardPosition.GetComponent<DropPlace>();
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[i], _cardPosition);
+                    EnemySetCard(_cards[i], _cardPosition, _cardsPos[0]);
                     _setFlag = false;
                 }
             }
@@ -208,12 +225,13 @@ public class EnemyMove : MonoBehaviour
             GameObject[] positions = { _cardPosition, _cardPosition1, _cardPosition2, _cardPosition3, _cardPosition4, _cardPosition5, _cardPosition6, _cardPosition7, _cardPosition8 };
             while (_setFlag == true)
             {
-                GameObject selectPosition = positions[Random.Range(0, positions.Length)];
+                int randam = Random.Range(0, positions.Length);
+                GameObject selectPosition = positions[randam];
                 DropPlace dropPlace = selectPosition.GetComponent<DropPlace>();
                 if (dropPlace.exist == false)
                 {
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[rand], selectPosition);
+                    EnemySetCard(_cards[rand], selectPosition, _cardsPos[randam]);
                     _setFlag = false;
                     Debug.Log("count");
                 }
@@ -231,28 +249,28 @@ public class EnemyMove : MonoBehaviour
                 {
                     DropPlace dropPlace = _cardPosition7.GetComponent<DropPlace>();
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[i], _cardPosition7);
+                    EnemySetCard(_cards[i], _cardPosition7, _cardsPos[7]);
                     _setFlag = false;
                 }
                 else if (_cards[i].GetComponent<Card>().numberTop > card.numberBottom && _cardPosition5.GetComponent<DropPlace>().exist == false && _setFlag == true)
                 {
                     DropPlace dropPlace = _cardPosition5.GetComponent<DropPlace>();
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[i], _cardPosition5);
+                    EnemySetCard(_cards[i], _cardPosition5, _cardsPos[5]);
                     _setFlag = false;
                 }
                 else if (_cards[i].GetComponent<Card>().numberBottom > card.numberTop && _cardPosition3.GetComponent<DropPlace>().exist == false && _setFlag == true)
                 {
                     DropPlace dropPlace = _cardPosition3.GetComponent<DropPlace>();
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[i], _cardPosition3);
+                    EnemySetCard(_cards[i], _cardPosition3, _cardsPos[3]);
                     _setFlag = false;
                 }
                 else if (_cards[i].GetComponent<Card>().numberLeft > card.numberRight && _cardPosition1.GetComponent<DropPlace>().exist == false && _setFlag == true)
                 {
                     DropPlace dropPlace = _cardPosition1.GetComponent<DropPlace>();
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[i], _cardPosition1);
+                    EnemySetCard(_cards[i], _cardPosition1, _cardsPos[1]);
                     _setFlag = false;
                 }
             }
@@ -261,12 +279,13 @@ public class EnemyMove : MonoBehaviour
             GameObject[] positions = { _cardPosition, _cardPosition1, _cardPosition2, _cardPosition3, _cardPosition4, _cardPosition5, _cardPosition6, _cardPosition7, _cardPosition8 };
             while (_setFlag == true)
             {
-                GameObject selectPosition = positions[Random.Range(0, positions.Length)];
+                int randam = Random.Range(0, positions.Length);
+                GameObject selectPosition = positions[randam];
                 DropPlace dropPlace = selectPosition.GetComponent<DropPlace>();
                 if (dropPlace.exist == false)
                 {
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[rand], selectPosition);
+                    EnemySetCard(_cards[rand], selectPosition, _cardsPos[randam]);
                     _setFlag = false;
                     Debug.Log("count");
                 }
@@ -284,21 +303,21 @@ public class EnemyMove : MonoBehaviour
                 {
                     DropPlace dropPlace = _cardPosition8.GetComponent<DropPlace>();
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[i], _cardPosition8);
+                    EnemySetCard(_cards[i], _cardPosition8, _cardsPos[8]);
                     _setFlag = false;
                 }
                 else if (_cards[i].GetComponent<Card>().numberBottom > card.numberTop && _cardPosition4.GetComponent<DropPlace>().exist == false && _setFlag == true)
                 {
                     DropPlace dropPlace = _cardPosition4.GetComponent<DropPlace>();
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[i], _cardPosition4);
+                    EnemySetCard(_cards[i], _cardPosition4, _cardsPos[4]);
                     _setFlag = false;
                 }
                 else if (_cards[i].GetComponent<Card>().numberLeft > card.numberRight && _cardPosition2.GetComponent<DropPlace>().exist == false && _setFlag == true)
                 {
                     DropPlace dropPlace = _cardPosition2.GetComponent<DropPlace>();
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[i], _cardPosition2);
+                    EnemySetCard(_cards[i], _cardPosition2, _cardsPos[2]);
                     _setFlag = false;
                 }
             }
@@ -307,12 +326,13 @@ public class EnemyMove : MonoBehaviour
             GameObject[] positions = { _cardPosition, _cardPosition1, _cardPosition2, _cardPosition3, _cardPosition4, _cardPosition5, _cardPosition6, _cardPosition7, _cardPosition8 };
             while (_setFlag == true)
             {
-                GameObject selectPosition = positions[Random.Range(0, positions.Length)];
+                int randam = Random.Range(0, positions.Length);
+                GameObject selectPosition = positions[randam];
                 DropPlace dropPlace = selectPosition.GetComponent<DropPlace>();
                 if (dropPlace.exist == false)
                 {
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[rand], selectPosition);
+                    EnemySetCard(_cards[rand], selectPosition, _cardsPos[randam]);
                     _setFlag = false;
                     Debug.Log("count");
                 }
@@ -330,14 +350,14 @@ public class EnemyMove : MonoBehaviour
                 {
                     DropPlace dropPlace = _cardPosition7.GetComponent<DropPlace>();
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[i], _cardPosition7);
+                    EnemySetCard(_cards[i], _cardPosition7, _cardsPos[7]);
                     _setFlag = false;
                 }
                 else if (_cards[i].GetComponent<Card>().numberLeft > card.numberRight && _cardPosition3.GetComponent<DropPlace>().exist == false && _setFlag == true)
                 {
                     DropPlace dropPlace = _cardPosition3.GetComponent<DropPlace>();
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[i], _cardPosition3);
+                    EnemySetCard(_cards[i], _cardPosition3, _cardsPos[3]);
                     _setFlag = false;
                 }
             }
@@ -346,12 +366,13 @@ public class EnemyMove : MonoBehaviour
             GameObject[] positions = { _cardPosition, _cardPosition1, _cardPosition2, _cardPosition3, _cardPosition4, _cardPosition5, _cardPosition6, _cardPosition7, _cardPosition8 };
             while (_setFlag == true)
             {
-                GameObject selectPosition = positions[Random.Range(0, positions.Length)];
+                int randam = Random.Range(0, positions.Length);
+                GameObject selectPosition = positions[randam];
                 DropPlace dropPlace = selectPosition.GetComponent<DropPlace>();
                 if (dropPlace.exist == false)
                 {
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[rand], selectPosition);
+                    EnemySetCard(_cards[rand], selectPosition, _cardsPos[randam]);
                     _setFlag = false;
                     Debug.Log("count");
                 }
@@ -369,21 +390,21 @@ public class EnemyMove : MonoBehaviour
                 {
                     DropPlace dropPlace = _cardPosition8.GetComponent<DropPlace>();
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[i], _cardPosition8);
+                    EnemySetCard(_cards[i], _cardPosition8, _cardsPos[8]);
                     _setFlag = false;
                 }
                 else if (_cards[i].GetComponent<Card>().numberBottom > card.numberTop && _cardPosition6.GetComponent<DropPlace>().exist == false && _setFlag == true)
                 {
                     DropPlace dropPlace = _cardPosition6.GetComponent<DropPlace>();
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[i], _cardPosition6);
+                    EnemySetCard(_cards[i], _cardPosition6, _cardsPos[6]);
                     _setFlag = false;
                 }
                 else if (_cards[i].GetComponent<Card>().numberLeft > card.numberRight && _cardPosition4.GetComponent<DropPlace>().exist == false && _setFlag == true)
                 {
                     DropPlace dropPlace = _cardPosition4.GetComponent<DropPlace>();
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[i], _cardPosition4);
+                    EnemySetCard(_cards[i], _cardPosition4, _cardsPos[4]);
                     _setFlag = false;
                 }
             }
@@ -392,14 +413,14 @@ public class EnemyMove : MonoBehaviour
             GameObject[] positions = { _cardPosition, _cardPosition1, _cardPosition2, _cardPosition3, _cardPosition4, _cardPosition5, _cardPosition6, _cardPosition7, _cardPosition8 };
             while (_setFlag == true)
             {
-                GameObject selectPosition = positions[Random.Range(0, positions.Length)];
+                int randam = Random.Range(0, positions.Length);
+                GameObject selectPosition = positions[randam];
                 DropPlace dropPlace = selectPosition.GetComponent<DropPlace>();
                 if (dropPlace.exist == false)
                 {
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[rand], selectPosition);
+                    EnemySetCard(_cards[rand], selectPosition, _cardsPos[randam]);
                     _setFlag = false;
-                    Debug.Log("count");
                 }
             }
             _pos7 = false;
@@ -415,14 +436,14 @@ public class EnemyMove : MonoBehaviour
                 {
                     DropPlace dropPlace = _cardPosition7.GetComponent<DropPlace>();
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[i], _cardPosition7);
+                    EnemySetCard(_cards[i], _cardPosition7, _cardsPos[7]);
                     _setFlag = false;
                 }
                 else if (_cards[i].GetComponent<Card>().numberLeft > card.numberRight && _cardPosition5.GetComponent<DropPlace>().exist == false && _setFlag == true)
                 {
                     DropPlace dropPlace = _cardPosition5.GetComponent<DropPlace>();
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[i], _cardPosition5);
+                    EnemySetCard(_cards[i], _cardPosition5, _cardsPos[5]);
                     _setFlag = false;
                 }
             }
@@ -431,14 +452,14 @@ public class EnemyMove : MonoBehaviour
             GameObject[] positions = { _cardPosition, _cardPosition1, _cardPosition2, _cardPosition3, _cardPosition4, _cardPosition5, _cardPosition6, _cardPosition7, _cardPosition8 };
             while (_setFlag == true)
             {
-                GameObject selectPosition = positions[Random.Range(0, positions.Length)];
+                int randam = Random.Range(0, positions.Length);
+                GameObject selectPosition = positions[randam];
                 DropPlace dropPlace = selectPosition.GetComponent<DropPlace>();
                 if (dropPlace.exist == false)
                 {
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[rand], selectPosition);
+                    EnemySetCard(_cards[rand], selectPosition, _cardsPos[randam]);
                     _setFlag = false;
-                    Debug.Log("count");
                 }
             }
             _pos8 = false;
@@ -451,12 +472,13 @@ public class EnemyMove : MonoBehaviour
             GameObject[] positions = { _cardPosition, _cardPosition1, _cardPosition2, _cardPosition3, _cardPosition4, _cardPosition5, _cardPosition6, _cardPosition7, _cardPosition8 };
             while (_setFlag == true)
             {
-                GameObject selectPosition = positions[Random.Range(0, positions.Length)];
+                int randam = Random.Range(0, positions.Length);
+                GameObject selectPosition = positions[randam];
                 DropPlace dropPlace = selectPosition.GetComponent<DropPlace>();
                 if (dropPlace.exist == false)
                 {
                     dropPlace.exist = true;
-                    EnemySetCard(_cards[rand], selectPosition);
+                    EnemySetCard(_cards[rand], selectPosition, _cardsPos[randam]);
                     _setFlag = false;
                     CardTop cardTop = _cards[rand].transform.GetChild(1).gameObject.GetComponent<CardTop>();
                     CardBottom cardBottom = _cards[rand].transform.GetChild(2).gameObject.GetComponent<CardBottom>();
@@ -473,9 +495,8 @@ public class EnemyMove : MonoBehaviour
         }
     }
 
-    private void EnemySetCard(GameObject gameObject, GameObject gameObject1)
+    private void EnemySetCard(GameObject gameObject, GameObject gameObject1, Vector3 card)
     {
-        Debug.Log("set");
         //カードの親をフィールドに
         gameObject.transform.SetParent(gameObject1.transform);
         //カードの位置を親(フィールド)の０の位置に設定
