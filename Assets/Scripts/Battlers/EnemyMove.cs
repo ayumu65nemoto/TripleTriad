@@ -484,10 +484,10 @@ public class EnemyMove : MonoBehaviour
                     CardBottom cardBottom = _cards[rand].transform.GetChild(2).gameObject.GetComponent<CardBottom>();
                     CardRight cardRight = _cards[rand].transform.GetChild(3).gameObject.GetComponent<CardRight>();
                     CardLeft cardLeft = _cards[rand].transform.GetChild(4).gameObject.GetComponent<CardLeft>();
-                    cardTop.battleTop = false;
-                    cardBottom.battleBottom = false;
-                    cardRight.battleRight = false;
-                    cardLeft.battleLeft = false;
+                    //cardTop.battleTop = false;
+                    //cardBottom.battleBottom = false;
+                    //cardRight.battleRight = false;
+                    //cardLeft.battleLeft = false;
                     Debug.Log("count");
                 }
             }

@@ -85,13 +85,13 @@ public class CardTop : MonoBehaviour
                     _cardLeft.battleLeft = false;
                 }
             }
-            //else if (collision.gameObject.tag == "Field" && _cardMove.setCard == true && _stay == false)
-            //{
-            //    if (battleTop == true && _cardMove.setCard == true && _stay == false)
-            //    {
-            //        battleTop = false;
-            //    }
-            //}
+            else if (collision.gameObject.tag == "Field" && _cardMove.setCard == true && _stay == false)
+            {
+                if (battleTop == true && _cardMove.setCard == true && _stay == false)
+                {
+                    Invoke("ChangeBattleFlagLate", 1.0f);
+                }
+            }
         }
     }
 
@@ -112,5 +112,10 @@ public class CardTop : MonoBehaviour
                 _stay = false;
             }
         }
+    }
+
+    private void ChangeBattleFlagLate()
+    {
+        battleTop = false;
     }
 }
