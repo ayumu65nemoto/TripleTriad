@@ -69,7 +69,7 @@ public class EnemyMove : MonoBehaviour
             _setFlag = true;
             for (int i = 0; i < _enemyHandField.transform.childCount; i++)
             {
-                Card card = _cardPosition.transform.GetChild(0).gameObject.GetComponent<Card>();
+                Card card = _cardPosition.transform.GetChild(1).gameObject.GetComponent<Card>();
                 _cards[i] = _enemyHandField.transform.GetChild(i).gameObject;
                 if (_cards[i].GetComponent<Card>().numberRight > card.numberLeft && _cardPosition3.GetComponent<DropPlace>().exist == false && _setFlag == true)
                 {
@@ -109,7 +109,7 @@ public class EnemyMove : MonoBehaviour
             _setFlag = true;
             for (int i = 0; i < _enemyHandField.transform.childCount; i++)
             {
-                Card card = _cardPosition1.transform.GetChild(0).gameObject.GetComponent<Card>();
+                Card card = _cardPosition1.transform.GetChild(1).gameObject.GetComponent<Card>();
                 _cards[i] = _enemyHandField.transform.GetChild(i).gameObject;
                 if (_cards[i].GetComponent<Card>().numberRight > card.numberLeft && _cardPosition4.GetComponent<DropPlace>().exist == false && _setFlag == true)
                 {
@@ -156,7 +156,7 @@ public class EnemyMove : MonoBehaviour
             _setFlag = true;
             for (int i = 0; i < _enemyHandField.transform.childCount; i++)
             {
-                Card card = _cardPosition2.transform.GetChild(0).gameObject.GetComponent<Card>();
+                Card card = _cardPosition2.transform.GetChild(1).gameObject.GetComponent<Card>();
                 _cards[i] = _enemyHandField.transform.GetChild(i).gameObject;
                 if (_cards[i].GetComponent<Card>().numberRight > card.numberLeft && _cardPosition5.GetComponent<DropPlace>().exist == false && _setFlag == true)
                 {
@@ -196,7 +196,7 @@ public class EnemyMove : MonoBehaviour
             _setFlag = true;
             for (int i = 0; i < _enemyHandField.transform.childCount; i++)
             {
-                Card card = _cardPosition3.transform.GetChild(0).gameObject.GetComponent<Card>();
+                Card card = _cardPosition3.transform.GetChild(1).gameObject.GetComponent<Card>();
                 _cards[i] = _enemyHandField.transform.GetChild(i).gameObject;
                 if (_cards[i].GetComponent<Card>().numberRight > card.numberLeft && _cardPosition6.GetComponent<DropPlace>().exist == false && _setFlag == true)
                 {
@@ -243,7 +243,7 @@ public class EnemyMove : MonoBehaviour
             _setFlag = true;
             for (int i = 0; i < _enemyHandField.transform.childCount; i++)
             {
-                Card card = _cardPosition4.transform.GetChild(0).gameObject.GetComponent<Card>();
+                Card card = _cardPosition4.transform.GetChild(1).gameObject.GetComponent<Card>();
                 _cards[i] = _enemyHandField.transform.GetChild(i).gameObject;
                 if (_cards[i].GetComponent<Card>().numberRight > card.numberLeft && _cardPosition7.GetComponent<DropPlace>().exist == false && _setFlag == true)
                 {
@@ -297,7 +297,7 @@ public class EnemyMove : MonoBehaviour
             _setFlag = true;
             for (int i = 0; i < _enemyHandField.transform.childCount; i++)
             {
-                Card card = _cardPosition5.transform.GetChild(0).gameObject.GetComponent<Card>();
+                Card card = _cardPosition5.transform.GetChild(1).gameObject.GetComponent<Card>();
                 _cards[i] = _enemyHandField.transform.GetChild(i).gameObject;
                 if (_cards[i].GetComponent<Card>().numberRight > card.numberLeft && _cardPosition8.GetComponent<DropPlace>().exist == false && _setFlag == true)
                 {
@@ -344,7 +344,7 @@ public class EnemyMove : MonoBehaviour
             _setFlag = true;
             for (int i = 0; i < _enemyHandField.transform.childCount; i++)
             {
-                Card card = _cardPosition6.transform.GetChild(0).gameObject.GetComponent<Card>();
+                Card card = _cardPosition6.transform.GetChild(1).gameObject.GetComponent<Card>();
                 _cards[i] = _enemyHandField.transform.GetChild(i).gameObject;
                 if (_cards[i].GetComponent<Card>().numberTop > card.numberBottom && _cardPosition7.GetComponent<DropPlace>().exist == false && _setFlag == true)
                 {
@@ -384,7 +384,7 @@ public class EnemyMove : MonoBehaviour
             _setFlag = true;
             for (int i = 0; i < _enemyHandField.transform.childCount; i++)
             {
-                Card card = _cardPosition7.transform.GetChild(0).gameObject.GetComponent<Card>();
+                Card card = _cardPosition7.transform.GetChild(1).gameObject.GetComponent<Card>();
                 _cards[i] = _enemyHandField.transform.GetChild(i).gameObject;
                 if (_cards[i].GetComponent<Card>().numberTop > card.numberBottom && _cardPosition8.GetComponent<DropPlace>().exist == false && _setFlag == true)
                 {
@@ -430,7 +430,7 @@ public class EnemyMove : MonoBehaviour
             _setFlag = true;
             for (int i = 0; i < _enemyHandField.transform.childCount; i++)
             {
-                Card card = _cardPosition8.transform.GetChild(0).gameObject.GetComponent<Card>();
+                Card card = _cardPosition8.transform.GetChild(1).gameObject.GetComponent<Card>();
                 _cards[i] = _enemyHandField.transform.GetChild(i).gameObject;
                 if (_cards[i].GetComponent<Card>().numberBottom > card.numberTop && _cardPosition7.GetComponent<DropPlace>().exist == false && _setFlag == true)
                 {

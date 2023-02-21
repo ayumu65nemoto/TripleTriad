@@ -29,15 +29,13 @@ public class Card : MonoBehaviour
     [SerializeField] public int numberLeft;
     [SerializeField] public Sprite icon;
     public CardElement cardElement;
+    private bool _none = false;
 
-    [SerializeField] Text numberTopText;
-    [SerializeField] Text numberBottomText;
-    [SerializeField] Text numberRightText;
-    [SerializeField] Text numberLeftText;
+    [SerializeField] public Text numberTopText;
+    [SerializeField] public Text numberBottomText;
+    [SerializeField] public Text numberRightText;
+    [SerializeField] public Text numberLeftText;
     [SerializeField] Image iconImage;
-
-    //ä÷êîÇìoò^Ç≈Ç´ÇÈ
-    public UnityAction<Card> OnSelectCard;
 
     public void Set()
     {
