@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject _cardPosition6;
     [SerializeField] GameObject _cardPosition7;
     [SerializeField] GameObject _cardPosition8;
+
+    private GameObject[] _playerCards;
+    [SerializeField] GameObject winText;
+    [SerializeField] GameObject loseText;
 
     //ターンフラグ
     public bool turn;
@@ -77,6 +82,15 @@ public class GameManager : MonoBehaviour
         if (_set.exist == true && _set1.exist == true && _set2.exist == true && _set3.exist == true && _set4.exist == true && _set5.exist == true && _set6.exist == true && _set7.exist == true && _set8.exist == true)
         {
             gameSet = true;
+            _playerCards = GameObject.FindGameObjectsWithTag("Player");
+            if (_playerCards.Length > 4)
+            {
+                winText.SetActive(true);
+            }
+            else
+            {
+                loseText.SetActive(true);
+            }
         }
     }
 

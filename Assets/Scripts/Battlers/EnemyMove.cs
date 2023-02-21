@@ -186,7 +186,6 @@ public class EnemyMove : MonoBehaviour
                     dropPlace.exist = true;
                     EnemySetCard(_cards[rand], selectPosition, _cardsPos[randam]);
                     _setFlag = false;
-                    Debug.Log("count");
                 }
             }
             _pos2 = false;

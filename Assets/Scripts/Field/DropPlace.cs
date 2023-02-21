@@ -32,7 +32,14 @@ public class DropPlace : MonoBehaviour, IDropHandler
 
     void Start()
     {
-        fieldElement = (FieldElement)Random.Range(0, 9);
+        if (Random.Range(0, 2) == 0)
+        {
+            fieldElement = (FieldElement)Random.Range(0, 9);
+        }
+        else
+        {
+            fieldElement = FieldElement.None;
+        }
         //属性に応じてアイコンを表示
         if (fieldElement == FieldElement.Fire)
         {
@@ -109,27 +116,30 @@ public class DropPlace : MonoBehaviour, IDropHandler
     {
         if (fieldElement != FieldElement.None)
         {
-            if (fieldElement.ToString() == card.cardElement.ToString())
+            if (card.cardElement != Card.CardElement.None)
             {
-                card.numberTop = card.numberTop + 1;
-                card.numberBottom = card.numberBottom + 1;
-                card.numberRight = card.numberRight + 1;
-                card.numberLeft = card.numberLeft + 1;
-                card.numberTopText.text = card.numberTop.ToString();
-                card.numberBottomText.text = card.numberBottom.ToString();
-                card.numberRightText.text = card.numberRight.ToString();
-                card.numberLeftText.text = card.numberLeft.ToString();
-            }
-            else
-            {
-                card.numberTop = card.numberTop - 1;
-                card.numberBottom = card.numberBottom - 1;
-                card.numberRight = card.numberRight - 1;
-                card.numberLeft = card.numberLeft - 1;
-                card.numberTopText.text = card.numberTop.ToString();
-                card.numberBottomText.text = card.numberBottom.ToString();
-                card.numberRightText.text = card.numberRight.ToString();
-                card.numberLeftText.text = card.numberLeft.ToString();
+                if (fieldElement.ToString() == card.cardElement.ToString())
+                {
+                    card.numberTop = card.numberTop + 1;
+                    card.numberBottom = card.numberBottom + 1;
+                    card.numberRight = card.numberRight + 1;
+                    card.numberLeft = card.numberLeft + 1;
+                    card.numberTopText.text = card.numberTop.ToString();
+                    card.numberBottomText.text = card.numberBottom.ToString();
+                    card.numberRightText.text = card.numberRight.ToString();
+                    card.numberLeftText.text = card.numberLeft.ToString();
+                }
+                else
+                {
+                    card.numberTop = card.numberTop - 1;
+                    card.numberBottom = card.numberBottom - 1;
+                    card.numberRight = card.numberRight - 1;
+                    card.numberLeft = card.numberLeft - 1;
+                    card.numberTopText.text = card.numberTop.ToString();
+                    card.numberBottomText.text = card.numberBottom.ToString();
+                    card.numberRightText.text = card.numberRight.ToString();
+                    card.numberLeftText.text = card.numberLeft.ToString();
+                }
             }
         }
     }
