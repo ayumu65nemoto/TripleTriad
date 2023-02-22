@@ -22,23 +22,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject winText;
     [SerializeField] GameObject loseText;
 
+    [SerializeField] GameObject replay;
+    [SerializeField] GameObject back;
+
     //ターンフラグ
     public bool turn;
     //ゲーム終了フラグ
     public bool gameSet;
     //初めのターンを記録しておく
     private bool _firstTurn;
-    //既処理スルーフラグ
-    private bool _zero;
-    private bool _one;
-    private bool _two;
-    private bool _three;
-    private bool _four;
-    private bool _five;
-    private bool _six;
-    private bool _seven;
-    private bool _eight;
-
+    
     private DropPlace _set;
     private DropPlace _set1;
     private DropPlace _set2;
@@ -55,16 +48,6 @@ public class GameManager : MonoBehaviour
         SetUp();
         gameSet = false;
         _firstTurn = turn;
-
-        _zero = true;
-        _one = true;
-        _two = true;
-        _three = true;
-        _four = true;
-        _five = true;
-        _six = true;
-        _seven = true;
-        _eight = true;
 
         _set = _cardPosition.GetComponent<DropPlace>();
         _set1 = _cardPosition1.GetComponent<DropPlace>();
@@ -91,6 +74,8 @@ public class GameManager : MonoBehaviour
             {
                 loseText.SetActive(true);
             }
+            replay.SetActive(true);
+            back.SetActive(true);
         }
     }
 

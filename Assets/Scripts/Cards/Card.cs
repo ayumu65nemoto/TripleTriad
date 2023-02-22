@@ -29,7 +29,6 @@ public class Card : MonoBehaviour
     [SerializeField] public int numberLeft;
     [SerializeField] public Sprite icon;
     public CardElement cardElement;
-    private bool _none = false;
 
     [SerializeField] public Text numberTopText;
     [SerializeField] public Text numberBottomText;
