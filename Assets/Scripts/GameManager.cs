@@ -65,17 +65,7 @@ public class GameManager : MonoBehaviour
         if (_set.exist == true && _set1.exist == true && _set2.exist == true && _set3.exist == true && _set4.exist == true && _set5.exist == true && _set6.exist == true && _set7.exist == true && _set8.exist == true)
         {
             gameSet = true;
-            _playerCards = GameObject.FindGameObjectsWithTag("Player");
-            if (_playerCards.Length > 4)
-            {
-                winText.SetActive(true);
-            }
-            else
-            {
-                loseText.SetActive(true);
-            }
-            replay.SetActive(true);
-            back.SetActive(true);
+            Invoke("GameSet", 1.5f);
         }
     }
 
@@ -118,5 +108,20 @@ public class GameManager : MonoBehaviour
         {
             turn = false;
         }
+    }
+
+    private void GameSet()
+    {
+        _playerCards = GameObject.FindGameObjectsWithTag("Player");
+        if (_playerCards.Length > 4)
+        {
+            winText.SetActive(true);
+        }
+        else
+        {
+            loseText.SetActive(true);
+        }
+        replay.SetActive(true);
+        back.SetActive(true);
     }
 }

@@ -1046,6 +1046,7 @@ GameObject:
   - component: {fileID: 8195282413047309472}
   - component: {fileID: 4294462161579053928}
   - component: {fileID: 3232006148351234947}
+  - component: {fileID: 1563087745641303409}
   m_Layer: 0
   m_Name: Bottom
   m_TagString: Untagged
@@ -1113,6 +1114,25 @@ MonoBehaviour:
   _cardRight: {fileID: 6858596237046002882}
   _cardLeft: {fileID: 96391471629884922}
   battleBottom: 1
+--- !u!114 &1563087745641303409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560106974082655102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7890f4384f080024093866f600285c13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _myCard: {fileID: -4038967972003885155}
+  _myCardObject: {fileID: 268603992624939004}
+  _cardMove: {fileID: 7112043098761717677}
+  _specialTop: {fileID: 8105740374473666520}
+  _specialRight: {fileID: 679440972234174455}
+  _specialLeft: {fileID: 1703395586682350579}
+  sameBottom: 0
 --- !u!1 &2544516998846389568
 GameObject:
   m_ObjectHideFlags: 0
@@ -1124,6 +1144,7 @@ GameObject:
   - component: {fileID: 8923227625626018691}
   - component: {fileID: 2773336119771978415}
   - component: {fileID: 96391471629884922}
+  - component: {fileID: 1703395586682350579}
   m_Layer: 0
   m_Name: Left
   m_TagString: Untagged
@@ -1191,6 +1212,25 @@ MonoBehaviour:
   _cardBottom: {fileID: 3232006148351234947}
   _cardRight: {fileID: 6858596237046002882}
   battleLeft: 1
+--- !u!114 &1703395586682350579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2544516998846389568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a161f022e8c4d954ca1caf1f7ac2ef02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _myCard: {fileID: -4038967972003885155}
+  _myCardObject: {fileID: 268603992624939004}
+  _cardMove: {fileID: 7112043098761717677}
+  _specialTop: {fileID: 8105740374473666520}
+  _specialBottom: {fileID: 1563087745641303409}
+  _specialRight: {fileID: 679440972234174455}
+  sameLeft: 0
 --- !u!1 &4922706413975610212
 GameObject:
   m_ObjectHideFlags: 0
@@ -1202,6 +1242,7 @@ GameObject:
   - component: {fileID: 2110922956913763281}
   - component: {fileID: 4760546890674083389}
   - component: {fileID: 1612433109728774145}
+  - component: {fileID: 8105740374473666520}
   m_Layer: 0
   m_Name: Top
   m_TagString: Untagged
@@ -1269,6 +1310,25 @@ MonoBehaviour:
   _cardRight: {fileID: 6858596237046002882}
   _cardLeft: {fileID: 96391471629884922}
   battleTop: 1
+--- !u!114 &8105740374473666520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4922706413975610212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b922e89c8487f8340a756176fc9cf9a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _myCard: {fileID: -4038967972003885155}
+  _myCardObject: {fileID: 268603992624939004}
+  _cardMove: {fileID: 7112043098761717677}
+  _specialBottom: {fileID: 1563087745641303409}
+  _specialRight: {fileID: 679440972234174455}
+  _specialLeft: {fileID: 1703395586682350579}
+  sameTop: 0
 --- !u!1 &7341703066568264269
 GameObject:
   m_ObjectHideFlags: 0
@@ -1280,6 +1340,7 @@ GameObject:
   - component: {fileID: 2083474263131245055}
   - component: {fileID: 4131998765394850125}
   - component: {fileID: 6858596237046002882}
+  - component: {fileID: 679440972234174455}
   m_Layer: 0
   m_Name: Right
   m_TagString: Untagged
@@ -1347,6 +1408,25 @@ MonoBehaviour:
   _cardBottom: {fileID: 3232006148351234947}
   _cardLeft: {fileID: 96391471629884922}
   battleRight: 1
+--- !u!114 &679440972234174455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7341703066568264269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea66e6850a7e5144ca8ce010b104b01c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _myCard: {fileID: -4038967972003885155}
+  _myCardObject: {fileID: 268603992624939004}
+  _cardMove: {fileID: 7112043098761717677}
+  _specialTop: {fileID: 8105740374473666520}
+  _specialBottom: {fileID: 1563087745641303409}
+  _specialLeft: {fileID: 1703395586682350579}
+  sameRight: 0
 --- !u!1 &8102071173283562052
 GameObject:
   m_ObjectHideFlags: 0

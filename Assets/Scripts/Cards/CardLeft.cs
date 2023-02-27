@@ -33,6 +33,7 @@ public class CardLeft : MonoBehaviour
                         canvas.transform.Find("Frame").GetComponent<Image>().color = new Color32(0, 0, 255, 255);
                         GameObject field = _enemyCardObject.transform.parent.gameObject;
                         field.GetComponent<DropPlace>().playerExist = true;
+                        Debug.Log("left");
                     }
                 }
             }
@@ -41,6 +42,7 @@ public class CardLeft : MonoBehaviour
                 if (battleLeft == true && _cardMove.setCard == true)
                 {
                     battleLeft = false;
+                    Debug.Log("left2");
                 }
             }
             else if (collision.gameObject.tag == "Field" && _cardMove.setCard == true && _stay == false)
@@ -48,6 +50,7 @@ public class CardLeft : MonoBehaviour
                 if (battleLeft == true && _cardMove.setCard == true)
                 {
                     battleLeft = false;
+                    Debug.Log("left3");
                 }
             }
         }
@@ -72,6 +75,7 @@ public class CardLeft : MonoBehaviour
                         canvas.transform.Find("Frame").GetComponent<Image>().color = new Color32(255, 0, 0, 255);
                         GameObject field = _enemyCardObject.transform.parent.gameObject;
                         field.GetComponent<DropPlace>().playerExist = false;
+                        Debug.Log("left");
                     }
                 }
             }
@@ -80,16 +84,18 @@ public class CardLeft : MonoBehaviour
                 if (battleLeft == true && _cardMove.setCard == true && _stay == false)
                 {
                     battleLeft = false;
-                    _cardTop.battleTop = false;
-                    _cardBottom.battleBottom = false;
-                    _cardRight.battleRight = false;
+                    //_cardTop.battleTop = false;
+                    //_cardBottom.battleBottom = false;
+                    //_cardRight.battleRight = false;
+                    Debug.Log("left2");
                 }
             }
             else if (collision.gameObject.tag == "Field" && _cardMove.setCard == true && _stay == false)
             {
                 if (battleLeft == true && _cardMove.setCard == true && _stay == false)
                 {
-                    Invoke("ChangeBattleFlagLate", 1.0f);
+                    Invoke("ChangeBattleFlagLate", 1.5f);
+                    Debug.Log("left3");
                 }
             }
         }

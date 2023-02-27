@@ -56,7 +56,7 @@ public class EnemyMove : MonoBehaviour
         {
             if (_once == true)
             {
-                Invoke("EnemyCardSet", 1.0f);
+                Invoke("EnemyCardSet", 2.0f);
                 _once = false;
             }
         }

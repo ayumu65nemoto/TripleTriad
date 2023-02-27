@@ -31,7 +31,7 @@ public class CardMove : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
         //レイをブロックする機能をオフ
         GetComponent<CanvasGroup>().blocksRaycasts = false;
 
-        if (setCard == false && _gameManager.turn == true)
+        if (setCard == false && _gameManager.turn == true/* && gameObject.tag == "Player"*/)
         {
             //親の親要素を親要素にする
             transform.SetParent(defaultParent.parent, false);
@@ -40,7 +40,7 @@ public class CardMove : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (setCard == false && _gameManager.turn == true)
+        if (setCard == false && _gameManager.turn == true/* && gameObject.tag == "Player"*/)
         {
             //マウス位置に移動
             transform.position = eventData.position;
