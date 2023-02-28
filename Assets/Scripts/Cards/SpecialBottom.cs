@@ -12,6 +12,9 @@ public class SpecialBottom : MonoBehaviour
     [SerializeField] private SpecialRight _specialRight;
     [SerializeField] private SpecialLeft _specialLeft;
     public bool sameBottom = false;
+    public bool plusFlagBottom = false;
+    public int plusBottom;
+    private int _plusCount = 1;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -21,28 +24,39 @@ public class SpecialBottom : MonoBehaviour
             {
                 GameObject _enemyCardObject = collision.gameObject;
                 Card _enemyCard = _enemyCardObject.GetComponent<Card>();
-                if (_myCard.numberBottom == _enemyCard.numberTop && _cardMove.setCard == true)
+                CardMove _enemyCardMove = _enemyCardObject.GetComponent<CardMove>();
+                if (_enemyCardMove.setCard == true)
                 {
-                    sameBottom = true;
-                    Debug.Log("a2");
-                    if (sameBottom == true && _specialTop.sameTop == true || sameBottom == true && _specialRight.sameRight == true || sameBottom == true && _specialLeft.sameLeft == true)
+                    if (_myCard.numberBottom == _enemyCard.numberTop && _cardMove.setCard == true)
                     {
-                        collision.gameObject.tag = "Player";
-                        CardTop cardTop = collision.transform.Find("Top").GetComponent<CardTop>();
-                        cardTop.battleTop = true;
-                        CardBottom cardBottom = collision.transform.Find("Bottom").GetComponent<CardBottom>();
-                        cardBottom.battleBottom = true;
-                        CardRight cardRight = collision.transform.Find("Right").GetComponent<CardRight>();
-                        cardRight.battleRight = true;
-                        CardLeft cardLeft = collision.transform.Find("Left").GetComponent<CardLeft>();
-                        cardLeft.battleLeft = true;
-                        Transform canvas = _enemyCardObject.transform.Find("Canvas");
-                        canvas.transform.Find("Frame").GetComponent<Image>().color = new Color32(0, 0, 255, 255);
-                        GameObject field = _enemyCardObject.transform.parent.gameObject;
-                        field.GetComponent<DropPlace>().playerExist = true;
-                        Debug.Log("b2");
+                        sameBottom = true;
+                        Debug.Log("a2");
+                        if (sameBottom == true && _specialTop.sameTop == true || sameBottom == true && _specialRight.sameRight == true || sameBottom == true && _specialLeft.sameLeft == true)
+                        {
+                            _specialTop.SpecialPlayerAction(collision, _enemyCardObject);
+                            Debug.Log("b2");
+                        }
+                        Invoke("ChangeSameFlagLate", 2f);
                     }
-                    Invoke("ChangeSameFlagLate", 2f);
+
+                    if (_cardMove.setCard == true && _plusCount > 0)
+                    {
+                        plusBottom = _myCard.numberBottom + _enemyCard.numberTop;
+                        plusFlagBottom = true;
+                        Invoke("ChangePlusFlagLate", 2f);
+                        _plusCount--;
+                        Debug.Log("plusBottomEnter");
+                    }
+
+                    if (plusBottom == _specialTop.plusTop || plusBottom == _specialRight.plusRight || plusBottom == _specialLeft.plusLeft)
+                    {
+                        if (plusFlagBottom == true)
+                        {
+                            _specialTop.SpecialPlayerAction(collision, _enemyCardObject);
+                            plusFlagBottom = false;
+                            Debug.Log("plusBottom");
+                        }
+                    }
                 }
             }
         }
@@ -53,27 +67,38 @@ public class SpecialBottom : MonoBehaviour
             {
                 GameObject _enemyCardObject = collision.gameObject;
                 Card _enemyCard = _enemyCardObject.GetComponent<Card>();
-                if (_myCard.numberBottom == _enemyCard.numberTop && _cardMove.setCard == true)
+                CardMove _enemyCardMove = _enemyCardObject.GetComponent<CardMove>();
+                if (_enemyCardMove.setCard == true)
                 {
-                    sameBottom = true;
-                    if (sameBottom == true && _specialTop.sameTop == true || sameBottom == true && _specialRight.sameRight == true || sameBottom == true && _specialLeft.sameLeft == true)
+                    if (_myCard.numberBottom == _enemyCard.numberTop && _cardMove.setCard == true)
                     {
-                        collision.gameObject.tag = "Enemy";
-                        CardTop cardTop = collision.transform.Find("Top").GetComponent<CardTop>();
-                        cardTop.battleTop = true;
-                        CardBottom cardBottom = collision.transform.Find("Bottom").GetComponent<CardBottom>();
-                        cardBottom.battleBottom = true;
-                        CardRight cardRight = collision.transform.Find("Right").GetComponent<CardRight>();
-                        cardRight.battleRight = true;
-                        CardLeft cardLeft = collision.transform.Find("Left").GetComponent<CardLeft>();
-                        cardLeft.battleLeft = true;
-                        Transform canvas = _enemyCardObject.transform.Find("Canvas");
-                        canvas.transform.Find("Frame").GetComponent<Image>().color = new Color32(255, 0, 0, 255);
-                        GameObject field = _enemyCardObject.transform.parent.gameObject;
-                        field.GetComponent<DropPlace>().playerExist = false;
-                        Debug.Log("b2");
+                        sameBottom = true;
+                        if (sameBottom == true && _specialTop.sameTop == true || sameBottom == true && _specialRight.sameRight == true || sameBottom == true && _specialLeft.sameLeft == true)
+                        {
+                            _specialTop.SpecialEnemyAction(collision, _enemyCardObject);
+                            Debug.Log("b2");
+                        }
+                        Invoke("ChangeSameFlagLate", 2f);
                     }
-                    Invoke("ChangeSameFlagLate", 2f);
+
+                    if (_cardMove.setCard == true && _plusCount > 0)
+                    {
+                        plusBottom = _myCard.numberBottom + _enemyCard.numberTop;
+                        plusFlagBottom = true;
+                        Invoke("ChangePlusFlagLate", 2f);
+                        _plusCount--;
+                        Debug.Log("plusBottomEnter2");
+                    }
+
+                    if (plusBottom == _specialTop.plusTop || plusBottom == _specialRight.plusRight || plusBottom == _specialLeft.plusLeft)
+                    {
+                        if (plusFlagBottom == true)
+                        {
+                            _specialTop.SpecialEnemyAction(collision, _enemyCardObject);
+                            plusFlagBottom = false;
+                            Debug.Log("plusBottom2");
+                        }
+                    }
                 }
             }
         }
@@ -82,5 +107,10 @@ public class SpecialBottom : MonoBehaviour
     private void ChangeSameFlagLate()
     {
         sameBottom = false;
+    }
+
+    private void ChangePlusFlagLate()
+    {
+        plusFlagBottom = false;
     }
 }
