@@ -83,7 +83,7 @@ public class DropPlace : MonoBehaviour, IDropHandler
     {
         CardMove card = eventData.pointerDrag.GetComponent<CardMove>();
         Card cardStatus = eventData.pointerDrag.GetComponent<Card>();
-        if (card != null && card.setCard == false && exist == false && _gameManager.turn == true /*&& card.tag == "Player"*/)
+        if (card != null && card.setCard == false && exist == false && _gameManager.turn == true)
         {
             //カードのパラメータを変更
             ChangeElement(cardStatus);
