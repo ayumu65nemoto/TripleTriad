@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class OnlineDropPlace : MonoBehaviour
+public class OnlineDropPlace : MonoBehaviour, IDropHandler
 {
     public enum FieldElement
     {
@@ -22,7 +22,7 @@ public class OnlineDropPlace : MonoBehaviour
     //カード存在フラグ
     public bool exist = false;
     //ゲームマネージャー取得
-    [SerializeField] GameManager _gameManager;
+    [SerializeField] OnlineGameManager _gameManager;
     //フィールドの属性
     public FieldElement fieldElement;
     //属性アイコンを格納
@@ -30,6 +30,43 @@ public class OnlineDropPlace : MonoBehaviour
     [SerializeField] Image iconImage;
 
     void Start()
+    {
+        SetElement();
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        OnlineCardMove card = eventData.pointerDrag.GetComponent<OnlineCardMove>();
+        Card cardStatus = eventData.pointerDrag.GetComponent<Card>();
+        if (card != null && card.setCard == false && exist == false && card.grabCard == true/* && _gameManager.turn == true*/)
+        {
+            //カードのパラメータを変更
+            ChangeElement(cardStatus);
+            //カードの親をフィールドに
+            card.defaultParent = this.transform;
+            //カードの位置を親(フィールド)の０の位置に設定
+            card.transform.localPosition = Vector3.zero;
+            //カード設置フラグとカード存在フラグを立てる
+            card.setCard = true;
+            exist = true;
+            //ターンを交代する
+            _gameManager.turn = !_gameManager.turn;
+
+            //プレイヤーのカードなら青に、エネミーのカードなら赤に変える
+            if (card.tag == "Player")
+            {
+                Transform canvas = card.transform.Find("Canvas");
+                canvas.transform.Find("Frame").GetComponent<Image>().color = new Color32(0, 0, 255, 255);
+            }
+            else if (card.tag == "Enemy")
+            {
+                Transform canvas = card.transform.Find("Canvas");
+                canvas.transform.Find("Frame").GetComponent<Image>().color = new Color32(255, 0, 0, 255);
+            }
+        }
+    }
+
+    private void SetElement()
     {
         if (Random.Range(0, 2) == 0)
         {
@@ -75,38 +112,6 @@ public class OnlineDropPlace : MonoBehaviour
         else if (fieldElement == FieldElement.None)
         {
             iconImage.sprite = _fieldIcons[8];
-        }
-    }
-
-    public void OnDrop(PointerEventData eventData)
-    {
-        CardMove card = eventData.pointerDrag.GetComponent<CardMove>();
-        Card cardStatus = eventData.pointerDrag.GetComponent<Card>();
-        if (card != null && card.setCard == false && exist == false && _gameManager.turn == true)
-        {
-            //カードのパラメータを変更
-            ChangeElement(cardStatus);
-            //カードの親をフィールドに
-            card.defaultParent = this.transform;
-            //カードの位置を親(フィールド)の０の位置に設定
-            card.transform.localPosition = Vector3.zero;
-            //カード設置フラグとカード存在フラグを立てる
-            card.setCard = true;
-            exist = true;
-            //ターンを交代する
-            _gameManager.turn = !_gameManager.turn;
-
-            //プレイヤーのカードなら青に、エネミーのカードなら赤に変える
-            if (card.tag == "Player")
-            {
-                Transform canvas = card.transform.Find("Canvas");
-                canvas.transform.Find("Frame").GetComponent<Image>().color = new Color32(0, 0, 255, 255);
-            }
-            else if (card.tag == "Enemy")
-            {
-                Transform canvas = card.transform.Find("Canvas");
-                canvas.transform.Find("Frame").GetComponent<Image>().color = new Color32(255, 0, 0, 255);
-            }
         }
     }
 

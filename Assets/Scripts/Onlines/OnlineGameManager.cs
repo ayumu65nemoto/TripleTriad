@@ -33,15 +33,15 @@ public class OnlineGameManager : MonoBehaviour
     //ゲーム終了フラグ
     public bool gameSet;
 
-    private DropPlace _set;
-    private DropPlace _set1;
-    private DropPlace _set2;
-    private DropPlace _set3;
-    private DropPlace _set4;
-    private DropPlace _set5;
-    private DropPlace _set6;
-    private DropPlace _set7;
-    private DropPlace _set8;
+    private OnlineDropPlace _set;
+    private OnlineDropPlace _set1;
+    private OnlineDropPlace _set2;
+    private OnlineDropPlace _set3;
+    private OnlineDropPlace _set4;
+    private OnlineDropPlace _set5;
+    private OnlineDropPlace _set6;
+    private OnlineDropPlace _set7;
+    private OnlineDropPlace _set8;
 
     //PhotonManager取得
     private GameObject _gameObject;
@@ -53,27 +53,18 @@ public class OnlineGameManager : MonoBehaviour
         SetUp();
         gameSet = false;
 
-        _set = _cardPosition.GetComponent<DropPlace>();
-        _set1 = _cardPosition1.GetComponent<DropPlace>();
-        _set2 = _cardPosition2.GetComponent<DropPlace>();
-        _set3 = _cardPosition3.GetComponent<DropPlace>();
-        _set4 = _cardPosition4.GetComponent<DropPlace>();
-        _set5 = _cardPosition5.GetComponent<DropPlace>();
-        _set6 = _cardPosition6.GetComponent<DropPlace>();
-        _set7 = _cardPosition7.GetComponent<DropPlace>();
-        _set8 = _cardPosition8.GetComponent<DropPlace>();
+        _set = _cardPosition.GetComponent<OnlineDropPlace>();
+        _set1 = _cardPosition1.GetComponent<OnlineDropPlace>();
+        _set2 = _cardPosition2.GetComponent<OnlineDropPlace>();
+        _set3 = _cardPosition3.GetComponent<OnlineDropPlace>();
+        _set4 = _cardPosition4.GetComponent<OnlineDropPlace>();
+        _set5 = _cardPosition5.GetComponent<OnlineDropPlace>();
+        _set6 = _cardPosition6.GetComponent<OnlineDropPlace>();
+        _set7 = _cardPosition7.GetComponent<OnlineDropPlace>();
+        _set8 = _cardPosition8.GetComponent<OnlineDropPlace>();
 
         _gameObject = GameObject.Find("PhotonManager");
         _photonManager = _gameObject.GetComponent<PhotonManager>();
-
-        if (_photonManager.playerId == 1)
-        {
-            playerCanvas1.SetActive(true);
-        }
-        if (_photonManager.playerId == 2)
-        {
-            playerCanvas2.SetActive(true);
-        }
     }
 
     private void Update()
@@ -129,6 +120,15 @@ public class OnlineGameManager : MonoBehaviour
     private void GameSet()
     {
         _playerCards = GameObject.FindGameObjectsWithTag("Player");
+        if (_photonManager.playerId == 1)
+        {
+            playerCanvas1.SetActive(true);
+        }
+        if (_photonManager.playerId == 2)
+        {
+            playerCanvas2.SetActive(true);
+        }
+
         if (_playerCards.Length > 4)
         {
             winText.SetActive(true);
