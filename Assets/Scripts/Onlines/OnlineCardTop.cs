@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class OnlineCardTop : MonoBehaviour
 {
-    [SerializeField] private Card _myCard;
+    [SerializeField] private OnlineCard _myCard;
     [SerializeField] private GameObject _myCardObject;
     [SerializeField] private OnlineCardMove _cardMove;
     [SerializeField] private OnlineCardBottom _cardBottom;
@@ -25,7 +25,7 @@ public class OnlineCardTop : MonoBehaviour
                 {
                     battleTop = false;
                     GameObject _enemyCardObject = collision.gameObject;
-                    Card _enemyCard = _enemyCardObject.GetComponent<Card>();
+                    OnlineCard _enemyCard = _enemyCardObject.GetComponent<OnlineCard>();
                     if (_myCard.numberTop > _enemyCard.numberBottom)
                     {
                         collision.gameObject.tag = "Player";
@@ -66,7 +66,7 @@ public class OnlineCardTop : MonoBehaviour
                     _cardRight.battleRight = false;
                     _cardLeft.battleLeft = false;
                     GameObject _enemyCardObject = collision.gameObject;
-                    Card _enemyCard = _enemyCardObject.GetComponent<Card>();
+                    OnlineCard _enemyCard = _enemyCardObject.GetComponent<OnlineCard>();
                     if (_myCard.numberTop > _enemyCard.numberBottom)
                     {
                         collision.gameObject.tag = "Enemy";

@@ -39,7 +39,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
-        PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = 1 }, TypedLobby.Default);
+        PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = 2 }, TypedLobby.Default);
     }
 
     private void Update()

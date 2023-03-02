@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class OnlineSpecialLeft : MonoBehaviour
 {
-    [SerializeField] private Card _myCard;
+    [SerializeField] private OnlineCard _myCard;
     [SerializeField] private GameObject _myCardObject;
     [SerializeField] private OnlineCardMove _cardMove;
     [SerializeField] private OnlineSpecialTop _specialTop;
@@ -23,7 +23,7 @@ public class OnlineSpecialLeft : MonoBehaviour
             if (collision.gameObject.tag == "Enemy")
             {
                 GameObject _enemyCardObject = collision.gameObject;
-                Card _enemyCard = _enemyCardObject.GetComponent<Card>();
+                OnlineCard _enemyCard = _enemyCardObject.GetComponent<OnlineCard>();
                 OnlineCardMove _enemyCardMove = _enemyCardObject.GetComponent<OnlineCardMove>();
                 if (_enemyCardMove.setCard == true)
                 {
@@ -65,7 +65,7 @@ public class OnlineSpecialLeft : MonoBehaviour
             if (collision.gameObject.tag == "Player")
             {
                 GameObject _enemyCardObject = collision.gameObject;
-                Card _enemyCard = _enemyCardObject.GetComponent<Card>();
+                OnlineCard _enemyCard = _enemyCardObject.GetComponent<OnlineCard>();
                 OnlineCardMove _enemyCardMove = _enemyCardObject.GetComponent<OnlineCardMove>();
                 if (_enemyCardMove.setCard == true)
                 {

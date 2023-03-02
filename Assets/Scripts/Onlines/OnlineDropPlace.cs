@@ -37,7 +37,7 @@ public class OnlineDropPlace : MonoBehaviour, IDropHandler
     public void OnDrop(PointerEventData eventData)
     {
         OnlineCardMove card = eventData.pointerDrag.GetComponent<OnlineCardMove>();
-        Card cardStatus = eventData.pointerDrag.GetComponent<Card>();
+        OnlineCard cardStatus = eventData.pointerDrag.GetComponent<OnlineCard>();
         if (card != null && card.setCard == false && exist == false && card.grabCard == true/* && _gameManager.turn == true*/)
         {
             //カードのパラメータを変更
@@ -115,11 +115,11 @@ public class OnlineDropPlace : MonoBehaviour, IDropHandler
         }
     }
 
-    private void ChangeElement(Card card)
+    private void ChangeElement(OnlineCard card)
     {
         if (fieldElement != FieldElement.None)
         {
-            if (card.cardElement != Card.CardElement.None)
+            if (card.cardElement != OnlineCard.CardElement.None)
             {
                 if (fieldElement.ToString() == card.cardElement.ToString())
                 {

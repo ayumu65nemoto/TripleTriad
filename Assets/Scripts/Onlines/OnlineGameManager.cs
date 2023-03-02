@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class OnlineGameManager : MonoBehaviour
+public class OnlineGameManager : MonoBehaviourPunCallbacks, IPunObservable
 {
-    [SerializeField] Battler player;
-    [SerializeField] Battler enemy;
-    [SerializeField] CardGenerator cardGenerator;
+    [SerializeField] OnlineBattler player;
+    [SerializeField] OnlineBattler enemy;
+    [SerializeField] OnlineCardGenerator cardGenerator;
     [SerializeField] GameObject _cardPosition;
     [SerializeField] GameObject _cardPosition1;
     [SerializeField] GameObject _cardPosition2;
@@ -49,6 +51,9 @@ public class OnlineGameManager : MonoBehaviour
 
     private void Start()
     {
+        _gameObject = GameObject.Find("PhotonManager");
+        _photonManager = _gameObject.GetComponent<PhotonManager>();
+
         RandomBool();
         SetUp();
         gameSet = false;
@@ -62,9 +67,6 @@ public class OnlineGameManager : MonoBehaviour
         _set6 = _cardPosition6.GetComponent<OnlineDropPlace>();
         _set7 = _cardPosition7.GetComponent<OnlineDropPlace>();
         _set8 = _cardPosition8.GetComponent<OnlineDropPlace>();
-
-        _gameObject = GameObject.Find("PhotonManager");
-        _photonManager = _gameObject.GetComponent<PhotonManager>();
     }
 
     private void Update()
@@ -79,15 +81,24 @@ public class OnlineGameManager : MonoBehaviour
     //カードを生成して配る
     void SetUp()
     {
-        SendCardsTo(player);
-        SendCardsTo(enemy);
+        if (_photonManager.playerId == 1)
+        {
+            //SendCardsTo(player);
+            photonView.RPC(nameof(SendCardsTo), RpcTarget.All, player);
+        }
+        if (_photonManager.playerId == 2)
+        {
+            //SendCardsTo(enemy);
+            photonView.RPC(nameof(SendCardsTo), RpcTarget.All, enemy);
+        }
     }
 
-    void SendCardsTo(Battler battler)
+    [PunRPC]
+    void SendCardsTo(OnlineBattler battler)
     {
         for (int i = 0; i < 5; i++)
         {
-            Card card = cardGenerator.Spawn();
+            OnlineCard card = cardGenerator.Spawn();
             //Battlerを経由することで、Battlerの方でカードを認識できる
             battler.SetCardToHand(card);
 
@@ -141,5 +152,19 @@ public class OnlineGameManager : MonoBehaviour
         }
         replay.SetActive(true);
         back.SetActive(true);
+    }
+
+    void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            //データの送信
+            stream.SendNext(turn);
+        }
+        else
+        {
+            //データの受信
+            turn = (bool)stream.ReceiveNext();
+        }
     }
 }
