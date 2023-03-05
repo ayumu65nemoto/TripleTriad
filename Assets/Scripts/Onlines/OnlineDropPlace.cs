@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class OnlineDropPlace : MonoBehaviour, IDropHandler
+public class OnlineDropPlace : MonoBehaviourPunCallbacks, IDropHandler, IPunObservable
 {
     public enum FieldElement
     {
@@ -38,12 +39,13 @@ public class OnlineDropPlace : MonoBehaviour, IDropHandler
     {
         OnlineCardMove card = eventData.pointerDrag.GetComponent<OnlineCardMove>();
         OnlineCard cardStatus = eventData.pointerDrag.GetComponent<OnlineCard>();
-        if (card != null && card.setCard == false && exist == false && card.grabCard == true/* && _gameManager.turn == true*/)
+        if (card != null && card.setCard == false && exist == false && card.grabCard == true)
         {
+            Debug.Log(eventData);
             //カードのパラメータを変更
             ChangeElement(cardStatus);
             //カードの親をフィールドに
-            card.defaultParent = this.transform;
+            card.transform.SetParent(this.transform);
             //カードの位置を親(フィールド)の０の位置に設定
             card.transform.localPosition = Vector3.zero;
             //カード設置フラグとカード存在フラグを立てる
@@ -143,6 +145,60 @@ public class OnlineDropPlace : MonoBehaviour, IDropHandler
                     card.numberRightText.text = card.numberRight.ToString();
                     card.numberLeftText.text = card.numberLeft.ToString();
                 }
+            }
+        }
+    }
+
+    void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            //データの送信
+            stream.SendNext(fieldElement);
+            stream.SendNext(exist);
+        }
+        else
+        {
+            //データの受信
+            fieldElement = (FieldElement)stream.ReceiveNext();
+            exist = (bool)stream.ReceiveNext();
+
+            //属性に応じてアイコンを表示
+            if (fieldElement == FieldElement.Fire)
+            {
+                iconImage.sprite = _fieldIcons[0];
+            }
+            else if (fieldElement == FieldElement.Thunder)
+            {
+                iconImage.sprite = _fieldIcons[1];
+            }
+            else if (fieldElement == FieldElement.Wind)
+            {
+                iconImage.sprite = _fieldIcons[2];
+            }
+            else if (fieldElement == FieldElement.Poison)
+            {
+                iconImage.sprite = _fieldIcons[3];
+            }
+            else if (fieldElement == FieldElement.Cold)
+            {
+                iconImage.sprite = _fieldIcons[4];
+            }
+            else if (fieldElement == FieldElement.Water)
+            {
+                iconImage.sprite = _fieldIcons[5];
+            }
+            else if (fieldElement == FieldElement.Earth)
+            {
+                iconImage.sprite = _fieldIcons[6];
+            }
+            else if (fieldElement == FieldElement.Holy)
+            {
+                iconImage.sprite = _fieldIcons[7];
+            }
+            else if (fieldElement == FieldElement.None)
+            {
+                iconImage.sprite = _fieldIcons[8];
             }
         }
     }

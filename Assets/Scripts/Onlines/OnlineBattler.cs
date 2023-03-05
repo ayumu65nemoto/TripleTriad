@@ -10,6 +10,6 @@ public class OnlineBattler : MonoBehaviour
 
     public void SetCardToHand(OnlineCard card)
     {
-        hand.Add(card);
+        //hand.Add(card);
     }
 }

@@ -118,6 +118,44 @@ public class OnlineCard : MonoBehaviourPunCallbacks, IPunObservable
             numberRightText.text = (string)stream.ReceiveNext();
             numberLeftText.text = (string)stream.ReceiveNext();
             cardElement = (CardElement)stream.ReceiveNext();
+
+            //属性に応じてアイコンを表示
+            if (cardElement == CardElement.Fire)
+            {
+                iconImage.sprite = _icons[0];
+            }
+            else if (cardElement == CardElement.Thunder)
+            {
+                iconImage.sprite = _icons[1];
+            }
+            else if (cardElement == CardElement.Wind)
+            {
+                iconImage.sprite = _icons[2];
+            }
+            else if (cardElement == CardElement.Poison)
+            {
+                iconImage.sprite = _icons[3];
+            }
+            else if (cardElement == CardElement.Cold)
+            {
+                iconImage.sprite = _icons[4];
+            }
+            else if (cardElement == CardElement.Water)
+            {
+                iconImage.sprite = _icons[5];
+            }
+            else if (cardElement == CardElement.Earth)
+            {
+                iconImage.sprite = _icons[6];
+            }
+            else if (cardElement == CardElement.Holy)
+            {
+                iconImage.sprite = _icons[7];
+            }
+            else if (cardElement == CardElement.None)
+            {
+                iconImage.sprite = _icons[8];
+            }
         }
     }
 }

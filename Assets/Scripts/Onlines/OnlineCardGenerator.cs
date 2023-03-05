@@ -14,7 +14,6 @@ public class OnlineCardGenerator : MonoBehaviourPunCallbacks
         GameObject card = PhotonNetwork.Instantiate(cardPrefab.name, transform.position, Quaternion.identity);
         OnlineCard onlineCard = card.GetComponent<OnlineCard>();
         onlineCard.Set();
-        Debug.Log("1");
         return onlineCard;
     }
 }

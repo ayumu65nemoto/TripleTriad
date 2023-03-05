@@ -6,8 +6,11 @@ using Photon.Realtime;
 
 public class OnlineGameManager : MonoBehaviourPunCallbacks, IPunObservable
 {
-    [SerializeField] OnlineBattler player;
-    [SerializeField] OnlineBattler enemy;
+    [SerializeField] GameObject _canvas;
+    [SerializeField] GameObject _playerField;
+    [SerializeField] GameObject _enemyField;
+    [SerializeField] OnlineBattlerHand player;
+    [SerializeField] OnlineBattlerHand enemy;
     [SerializeField] OnlineCardGenerator cardGenerator;
     [SerializeField] GameObject _cardPosition;
     [SerializeField] GameObject _cardPosition1;
@@ -83,36 +86,39 @@ public class OnlineGameManager : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (_photonManager.playerId == 1)
         {
-            //SendCardsTo(player);
-            photonView.RPC(nameof(SendCardsTo), RpcTarget.All, player);
+            //photonView.RPC(nameof(SendCardsTo), RpcTarget.Others, 1);
+            SendCardsTo(1);
         }
         if (_photonManager.playerId == 2)
         {
-            //SendCardsTo(enemy);
-            photonView.RPC(nameof(SendCardsTo), RpcTarget.All, enemy);
+            //photonView.RPC(nameof(SendCardsTo), RpcTarget.Others, 2);
+            SendCardsTo(2);
         }
     }
 
-    [PunRPC]
-    void SendCardsTo(OnlineBattler battler)
+    //[PunRPC]
+    void SendCardsTo(int check)
     {
-        for (int i = 0; i < 5; i++)
+        if (check == 1)
         {
-            OnlineCard card = cardGenerator.Spawn();
-            //Battlerを経由することで、Battlerの方でカードを認識できる
-            battler.SetCardToHand(card);
-
-            //どちらの手札にあるかによってタグを付ける
-            if (battler == player)
+            for (int i = 0; i < 5; i++)
             {
+                OnlineCard card = cardGenerator.Spawn();
+                player.ResetPositions(1760, i, card);
                 card.tag = "Player";
-            }
-            else if (battler == enemy)
-            {
-                card.tag = "Enemy";
+                //card.transform.SetParent(_canvas.transform);
             }
         }
-        battler.Hand.ResetPositions();
+        if (check == 2)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                OnlineCard card = cardGenerator.Spawn();
+                enemy.ResetPositions(150, i, card);
+                card.tag = "Enemy";
+                //card.transform.SetParent(_canvas.transform);
+            }
+        }
     }
 
     void RandomBool()

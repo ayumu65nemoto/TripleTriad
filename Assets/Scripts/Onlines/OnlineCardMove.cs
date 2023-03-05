@@ -18,11 +18,11 @@ public class OnlineCardMove : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
     private PhotonManager _photonManager;
     //カードをつかんでいる
     public bool grabCard;
+    //Canvas
+    GameObject _canvas;
 
     private void Start()
     {
-        //現在位置取得
-        _currentPosition = this.transform.position;
         //フラグリセット
         setCard = false;
         grabCard = false;
@@ -31,31 +31,22 @@ public class OnlineCardMove : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
         //PhotonManager取得
         _gameObject = GameObject.Find("PhotonManager");
         _photonManager = _gameObject.GetComponent<PhotonManager>();
+        //Canvas取得
+        _canvas = GameObject.FindWithTag("Canvas");
+        //親をCanvasに
+        this.gameObject.transform.SetParent(_canvas.transform);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        //親要素取得
-        defaultParent = transform.parent;
+        //現在位置取得
+        _currentPosition = this.transform.position;
         //レイをブロックする機能をオフ
         GetComponent<CanvasGroup>().blocksRaycasts = false;
+        //親をCanvasに
+        this.gameObject.transform.SetParent(_canvas.transform);
 
-        if (_photonManager.playerId == 1)
-        {
-            if (setCard == false && _gameManager.turn == true && eventData.pointerDrag.tag == "Player")
-            {
-                //親の親要素を親要素にする
-                transform.SetParent(defaultParent.parent, false);
-            }
-        }
-        if (_photonManager.playerId == 2)
-        {
-            if (setCard == false && _gameManager.turn == false && eventData.pointerDrag.tag == "Enemy")
-            {
-                //親の親要素を親要素にする
-                transform.SetParent(defaultParent.parent, false);
-            }
-        }
+        Debug.Log("OnBeginDrag");
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -67,23 +58,22 @@ public class OnlineCardMove : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
                 //マウス位置に移動
                 transform.position = eventData.position;
                 grabCard = true;
+                Debug.Log(eventData.position);
             }
         }
         if (_photonManager.playerId == 2)
         {
             if (setCard == false && _gameManager.turn == false && eventData.pointerDrag.tag == "Enemy")
             {
-                //マウス位置に移動
                 transform.position = eventData.position;
                 grabCard = true;
+                Debug.Log(eventData.position);
             }
         }
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        //もとの親要素に戻す
-        transform.SetParent(defaultParent, false);
         //レイをブロックする機能をオン
         GetComponent<CanvasGroup>().blocksRaycasts = true;
 
@@ -93,6 +83,9 @@ public class OnlineCardMove : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
             //初期位置に戻す
             transform.position = _currentPosition;
             grabCard = false;
+            Debug.Log(_currentPosition);
         }
+
+        Debug.Log("Set");
     }
 }
