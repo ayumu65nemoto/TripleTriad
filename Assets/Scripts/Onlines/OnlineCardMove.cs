@@ -45,8 +45,6 @@ public class OnlineCardMove : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
         GetComponent<CanvasGroup>().blocksRaycasts = false;
         //親をCanvasに
         this.gameObject.transform.SetParent(_canvas.transform);
-
-        Debug.Log("OnBeginDrag");
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -58,7 +56,6 @@ public class OnlineCardMove : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
                 //マウス位置に移動
                 transform.position = eventData.position;
                 grabCard = true;
-                Debug.Log(eventData.position);
             }
         }
         if (_photonManager.playerId == 2)
@@ -67,7 +64,6 @@ public class OnlineCardMove : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
             {
                 transform.position = eventData.position;
                 grabCard = true;
-                Debug.Log(eventData.position);
             }
         }
     }
@@ -83,9 +79,6 @@ public class OnlineCardMove : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
             //初期位置に戻す
             transform.position = _currentPosition;
             grabCard = false;
-            Debug.Log(_currentPosition);
         }
-
-        Debug.Log("Set");
     }
 }

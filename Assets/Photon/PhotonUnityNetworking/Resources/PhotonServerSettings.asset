@@ -42,6 +42,8 @@ MonoBehaviour:
   - SendCardsTo
   - Add
   - CardAdd
+  - ChangeTurn
+  - ChangeOwner
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

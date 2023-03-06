@@ -52,7 +52,7 @@ public class OnlineDropPlace : MonoBehaviourPunCallbacks, IDropHandler, IPunObse
             card.setCard = true;
             exist = true;
             //ターンを交代する
-            _gameManager.turn = !_gameManager.turn;
+            photonView.RPC(nameof(ChangeTurn), RpcTarget.All);
 
             //プレイヤーのカードなら青に、エネミーのカードなら赤に変える
             if (card.tag == "Player")
@@ -201,5 +201,11 @@ public class OnlineDropPlace : MonoBehaviourPunCallbacks, IDropHandler, IPunObse
                 iconImage.sprite = _fieldIcons[8];
             }
         }
+    }
+
+    [PunRPC]
+    void ChangeTurn()
+    {
+        _gameManager.turn = !_gameManager.turn;
     }
 }
