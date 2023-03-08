@@ -41,16 +41,10 @@ public class OnlineDropPlace : MonoBehaviourPunCallbacks, IDropHandler, IPunObse
         OnlineCard cardStatus = eventData.pointerDrag.GetComponent<OnlineCard>();
         if (card != null && card.setCard == false && exist == false && card.grabCard == true)
         {
-            Debug.Log(eventData);
             //カードのパラメータを変更
             ChangeElement(cardStatus);
-            //カードの親をフィールドに
-            card.transform.SetParent(this.transform);
-            //カードの位置を親(フィールド)の０の位置に設定
-            card.transform.localPosition = Vector3.zero;
-            //カード設置フラグとカード存在フラグを立てる
-            card.setCard = true;
-            exist = true;
+            //カードをフィールドにセット
+            SetCardPosition(card);
             //ターンを交代する
             photonView.RPC(nameof(ChangeTurn), RpcTarget.All);
 
@@ -200,6 +194,82 @@ public class OnlineDropPlace : MonoBehaviourPunCallbacks, IDropHandler, IPunObse
             {
                 iconImage.sprite = _fieldIcons[8];
             }
+        }
+    }
+
+    private void SetCardPosition(OnlineCardMove card)
+    {
+        if (this.gameObject.name == "CardPosition")
+        {
+            //カードの位置を設定
+            card.transform.localPosition = new Vector3(245, 335);
+            //カード設置フラグとカード存在フラグを立てる
+            card.setCard = true;
+            exist = true;
+        }
+        if (this.gameObject.name == "CardPosition1")
+        {
+            //カードの位置を親(フィールド)の０の位置に設定
+            card.transform.localPosition = new Vector3(245, 0);
+            //カード設置フラグとカード存在フラグを立てる
+            card.setCard = true;
+            exist = true;
+        }
+        if (this.gameObject.name == "CardPosition2")
+        {
+            //カードの位置を親(フィールド)の０の位置に設定
+            card.transform.localPosition = new Vector3(245, -335);
+            //カード設置フラグとカード存在フラグを立てる
+            card.setCard = true;
+            exist = true;
+        }
+        if (this.gameObject.name == "CardPosition3")
+        {
+            //カードの位置を親(フィールド)の０の位置に設定
+            card.transform.localPosition = new Vector3(0, 335);
+            //カード設置フラグとカード存在フラグを立てる
+            card.setCard = true;
+            exist = true;
+        }
+        if (this.gameObject.name == "CardPosition4")
+        {
+            //カードの位置を親(フィールド)の０の位置に設定
+            card.transform.localPosition = new Vector3(0, 0);
+            //カード設置フラグとカード存在フラグを立てる
+            card.setCard = true;
+            exist = true;
+        }
+        if (this.gameObject.name == "CardPosition5")
+        {
+            //カードの位置を親(フィールド)の０の位置に設定
+            card.transform.localPosition = new Vector3(0, -335);
+            //カード設置フラグとカード存在フラグを立てる
+            card.setCard = true;
+            exist = true;
+        }
+        if (this.gameObject.name == "CardPosition6")
+        {
+            //カードの位置を親(フィールド)の０の位置に設定
+            card.transform.localPosition = new Vector3(-245, 335);
+            //カード設置フラグとカード存在フラグを立てる
+            card.setCard = true;
+            exist = true;
+        }
+        if (this.gameObject.name == "CardPosition7")
+        {
+            //カードの位置を親(フィールド)の０の位置に設定
+            card.transform.localPosition = new Vector3(-245, 0);
+            //カード設置フラグとカード存在フラグを立てる
+            card.setCard = true;
+            exist = true;
+        }
+        if (this.gameObject.name == "CardPosition8")
+        {
+            //カードの位置を親(フィールド)の０の位置に設定
+            card.transform.localPosition = new Vector3(-245, -335);
+            //カード設置フラグとカード存在フラグを立てる
+            card.setCard = true;
+            exist = true;
         }
     }
 
