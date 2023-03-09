@@ -119,34 +119,30 @@ public class OnlineSpecialTop : MonoBehaviour
     public void SpecialPlayerAction(Collider2D collision, GameObject _enemyCardObject)
     {
         collision.gameObject.tag = "Player";
-        CardTop cardTop = collision.transform.Find("Top").GetComponent<CardTop>();
+        OnlineCardTop cardTop = collision.transform.Find("Top").GetComponent<OnlineCardTop>();
         cardTop.battleTop = true;
-        CardBottom cardBottom = collision.transform.Find("Bottom").GetComponent<CardBottom>();
+        OnlineCardBottom cardBottom = collision.transform.Find("Bottom").GetComponent<OnlineCardBottom>();
         cardBottom.battleBottom = true;
-        CardRight cardRight = collision.transform.Find("Right").GetComponent<CardRight>();
+        OnlineCardRight cardRight = collision.transform.Find("Right").GetComponent<OnlineCardRight>();
         cardRight.battleRight = true;
-        CardLeft cardLeft = collision.transform.Find("Left").GetComponent<CardLeft>();
+        OnlineCardLeft cardLeft = collision.transform.Find("Left").GetComponent<OnlineCardLeft>();
         cardLeft.battleLeft = true;
         Transform canvas = _enemyCardObject.transform.Find("Canvas");
         canvas.transform.Find("Frame").GetComponent<Image>().color = new Color32(0, 0, 255, 255);
-        GameObject field = _enemyCardObject.transform.parent.gameObject;
-        field.GetComponent<DropPlace>().playerExist = true;
     }
 
     public void SpecialEnemyAction(Collider2D collision, GameObject _enemyCardObject)
     {
         collision.gameObject.tag = "Enemy";
-        CardTop cardTop = collision.transform.Find("Top").GetComponent<CardTop>();
+        OnlineCardTop cardTop = collision.transform.Find("Top").GetComponent<OnlineCardTop>();
         cardTop.battleTop = true;
-        CardBottom cardBottom = collision.transform.Find("Bottom").GetComponent<CardBottom>();
+        OnlineCardBottom cardBottom = collision.transform.Find("Bottom").GetComponent<OnlineCardBottom>();
         cardBottom.battleBottom = true;
-        CardRight cardRight = collision.transform.Find("Right").GetComponent<CardRight>();
+        OnlineCardRight cardRight = collision.transform.Find("Right").GetComponent<OnlineCardRight>();
         cardRight.battleRight = true;
-        CardLeft cardLeft = collision.transform.Find("Left").GetComponent<CardLeft>();
+        OnlineCardLeft cardLeft = collision.transform.Find("Left").GetComponent<OnlineCardLeft>();
         cardLeft.battleLeft = true;
         Transform canvas = _enemyCardObject.transform.Find("Canvas");
         canvas.transform.Find("Frame").GetComponent<Image>().color = new Color32(255, 0, 0, 255);
-        GameObject field = _enemyCardObject.transform.parent.gameObject;
-        field.GetComponent<DropPlace>().playerExist = false;
     }
 }
