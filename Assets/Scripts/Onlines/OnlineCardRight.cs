@@ -28,10 +28,9 @@ public class OnlineCardRight : MonoBehaviour
                     OnlineCard _enemyCard = _enemyCardObject.GetComponent<OnlineCard>();
                     if (_myCard.numberRight > _enemyCard.numberLeft)
                     {
-                        collision.gameObject.tag = "Player";
-                        Transform canvas = _enemyCardObject.transform.Find("Canvas");
+                        Transform canvas = _enemyCard.transform.Find("Canvas");
                         canvas.transform.Find("Frame").GetComponent<Image>().color = new Color32(0, 0, 255, 255);
-                        GameObject field = _enemyCardObject.transform.parent.gameObject;
+                        Debug.Log(canvas);
                         Debug.Log("right");
                     }
                 }
@@ -69,11 +68,9 @@ public class OnlineCardRight : MonoBehaviour
                     OnlineCard _enemyCard = _enemyCardObject.GetComponent<OnlineCard>();
                     if (_myCard.numberRight > _enemyCard.numberLeft)
                     {
-                        collision.gameObject.tag = "Enemy";
-                        Transform canvas = _enemyCardObject.transform.Find("Canvas");
+                        Transform canvas = _enemyCard.transform.Find("Canvas");
                         canvas.transform.Find("Frame").GetComponent<Image>().color = new Color32(255, 0, 0, 255);
-                        GameObject field = _enemyCardObject.transform.parent.gameObject;
-                        field.GetComponent<DropPlace>().playerExist = false;
+                        Debug.Log(canvas);
                         Debug.Log("right");
                     }
                 }

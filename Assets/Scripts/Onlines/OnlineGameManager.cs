@@ -86,17 +86,14 @@ public class OnlineGameManager : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (_photonManager.playerId == 1)
         {
-            //photonView.RPC(nameof(SendCardsTo), RpcTarget.Others, 1);
             SendCardsTo(1);
         }
         if (_photonManager.playerId == 2)
         {
-            //photonView.RPC(nameof(SendCardsTo), RpcTarget.Others, 2);
             SendCardsTo(2);
         }
     }
 
-    //[PunRPC]
     void SendCardsTo(int check)
     {
         if (check == 1)
@@ -105,8 +102,6 @@ public class OnlineGameManager : MonoBehaviourPunCallbacks, IPunObservable
             {
                 OnlineCard card = cardGenerator.Spawn();
                 player.ResetPositions(1760, i, card);
-                card.tag = "Player";
-                //card.transform.SetParent(_canvas.transform);
             }
         }
         if (check == 2)
@@ -115,8 +110,6 @@ public class OnlineGameManager : MonoBehaviourPunCallbacks, IPunObservable
             {
                 OnlineCard card = cardGenerator.Spawn();
                 enemy.ResetPositions(150, i, card);
-                card.tag = "Enemy";
-                //card.transform.SetParent(_canvas.transform);
             }
         }
     }

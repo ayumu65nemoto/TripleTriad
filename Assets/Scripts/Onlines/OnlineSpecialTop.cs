@@ -25,6 +25,8 @@ public class OnlineSpecialTop : MonoBehaviour
                 GameObject _enemyCardObject = collision.gameObject;
                 OnlineCard _enemyCard = _enemyCardObject.GetComponent<OnlineCard>();
                 OnlineCardMove _enemyCardMove = _enemyCardObject.GetComponent<OnlineCardMove>();
+                Debug.Log(_enemyCardObject);
+                Debug.Log(_enemyCardMove);
                 if (_enemyCardMove.setCard == true)
                 {
                     if (_myCard.numberTop == _enemyCard.numberBottom && _cardMove.setCard == true)

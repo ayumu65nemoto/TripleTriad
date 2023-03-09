@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class OnlineCardMove : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
+public class OnlineCardMove : MonoBehaviourPunCallbacks, IPunObservable, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     //親要素取得
     public Transform defaultParent;
@@ -79,6 +81,20 @@ public class OnlineCardMove : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
             //初期位置に戻す
             transform.position = _currentPosition;
             grabCard = false;
+        }
+    }
+
+    void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            //データの送信
+            stream.SendNext(setCard);
+        }
+        else
+        {
+            //データの受信
+            setCard = (bool)stream.ReceiveNext();
         }
     }
 }

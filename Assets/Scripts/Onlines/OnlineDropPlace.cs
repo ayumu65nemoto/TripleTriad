@@ -205,7 +205,7 @@ public class OnlineDropPlace : MonoBehaviourPunCallbacks, IDropHandler, IPunObse
             card.transform.localPosition = new Vector3(245, 335);
             //カード設置フラグとカード存在フラグを立てる
             card.setCard = true;
-            exist = true;
+            photonView.RPC(nameof(SetExistFlag), RpcTarget.All);
         }
         if (this.gameObject.name == "CardPosition1")
         {
@@ -213,7 +213,7 @@ public class OnlineDropPlace : MonoBehaviourPunCallbacks, IDropHandler, IPunObse
             card.transform.localPosition = new Vector3(245, 0);
             //カード設置フラグとカード存在フラグを立てる
             card.setCard = true;
-            exist = true;
+            photonView.RPC(nameof(SetExistFlag), RpcTarget.All);
         }
         if (this.gameObject.name == "CardPosition2")
         {
@@ -221,7 +221,7 @@ public class OnlineDropPlace : MonoBehaviourPunCallbacks, IDropHandler, IPunObse
             card.transform.localPosition = new Vector3(245, -335);
             //カード設置フラグとカード存在フラグを立てる
             card.setCard = true;
-            exist = true;
+            photonView.RPC(nameof(SetExistFlag), RpcTarget.All);
         }
         if (this.gameObject.name == "CardPosition3")
         {
@@ -229,7 +229,7 @@ public class OnlineDropPlace : MonoBehaviourPunCallbacks, IDropHandler, IPunObse
             card.transform.localPosition = new Vector3(0, 335);
             //カード設置フラグとカード存在フラグを立てる
             card.setCard = true;
-            exist = true;
+            photonView.RPC(nameof(SetExistFlag), RpcTarget.All);
         }
         if (this.gameObject.name == "CardPosition4")
         {
@@ -237,7 +237,7 @@ public class OnlineDropPlace : MonoBehaviourPunCallbacks, IDropHandler, IPunObse
             card.transform.localPosition = new Vector3(0, 0);
             //カード設置フラグとカード存在フラグを立てる
             card.setCard = true;
-            exist = true;
+            photonView.RPC(nameof(SetExistFlag), RpcTarget.All);
         }
         if (this.gameObject.name == "CardPosition5")
         {
@@ -245,7 +245,7 @@ public class OnlineDropPlace : MonoBehaviourPunCallbacks, IDropHandler, IPunObse
             card.transform.localPosition = new Vector3(0, -335);
             //カード設置フラグとカード存在フラグを立てる
             card.setCard = true;
-            exist = true;
+            photonView.RPC(nameof(SetExistFlag), RpcTarget.All);
         }
         if (this.gameObject.name == "CardPosition6")
         {
@@ -253,7 +253,7 @@ public class OnlineDropPlace : MonoBehaviourPunCallbacks, IDropHandler, IPunObse
             card.transform.localPosition = new Vector3(-245, 335);
             //カード設置フラグとカード存在フラグを立てる
             card.setCard = true;
-            exist = true;
+            photonView.RPC(nameof(SetExistFlag), RpcTarget.All);
         }
         if (this.gameObject.name == "CardPosition7")
         {
@@ -261,7 +261,7 @@ public class OnlineDropPlace : MonoBehaviourPunCallbacks, IDropHandler, IPunObse
             card.transform.localPosition = new Vector3(-245, 0);
             //カード設置フラグとカード存在フラグを立てる
             card.setCard = true;
-            exist = true;
+            photonView.RPC(nameof(SetExistFlag), RpcTarget.All);
         }
         if (this.gameObject.name == "CardPosition8")
         {
@@ -269,7 +269,7 @@ public class OnlineDropPlace : MonoBehaviourPunCallbacks, IDropHandler, IPunObse
             card.transform.localPosition = new Vector3(-245, -335);
             //カード設置フラグとカード存在フラグを立てる
             card.setCard = true;
-            exist = true;
+            photonView.RPC(nameof(SetExistFlag), RpcTarget.All);
         }
     }
 
@@ -277,5 +277,11 @@ public class OnlineDropPlace : MonoBehaviourPunCallbacks, IDropHandler, IPunObse
     void ChangeTurn()
     {
         _gameManager.turn = !_gameManager.turn;
+    }
+
+    [PunRPC]
+    void SetExistFlag()
+    {
+        exist = true;
     }
 }

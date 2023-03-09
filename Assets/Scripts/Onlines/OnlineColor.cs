@@ -28,6 +28,7 @@ public class OnlineColor : MonoBehaviourPunCallbacks, IPunObservable
             stream.SendNext(gameObject.GetComponent<Image>().color.g);
             stream.SendNext(gameObject.GetComponent<Image>().color.b);
             stream.SendNext(gameObject.GetComponent<Image>().color.a);
+            Debug.Log("send");
         }
         else
         {
@@ -36,18 +37,17 @@ public class OnlineColor : MonoBehaviourPunCallbacks, IPunObservable
             float g = (float)stream.ReceiveNext();
             float b = (float)stream.ReceiveNext();
             float a = (float)stream.ReceiveNext();
-
+            Debug.Log("receive");
             gameObject.GetComponent<Image>().color = new Vector4(r, g, b, a);
-            Debug.Log(r + b);
 
-            if (r == 255)
+            if (r == 1 && b == 0)
             {
-                GameObject card = transform.root.gameObject;
+                GameObject card = transform.parent.parent.gameObject;
                 card.tag = "Enemy";
             }
-            if (b == 255)
+            if (b == 1 && r == 0)
             {
-                GameObject card = transform.root.gameObject;
+                GameObject card = transform.parent.parent.gameObject;
                 card.tag = "Player";
             }
         }
