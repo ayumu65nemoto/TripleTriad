@@ -7,6 +7,11 @@ using UnityEngine.UI;
 
 public class OnlineColor : MonoBehaviourPunCallbacks, IPunObservable
 {
+    private float r_color;
+    private float g_color;
+    private float b_color;
+    private float a_color;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +21,18 @@ public class OnlineColor : MonoBehaviourPunCallbacks, IPunObservable
     // Update is called once per frame
     void Update()
     {
-        
+        //if (r_color == 1 && b_color == 0)
+        //{
+        //    GameObject card = transform.parent.parent.gameObject;
+        //    card.tag = "Enemy";
+        //    Debug.Log(gameObject.GetComponent<Image>().color);
+        //}
+        //if (b_color == 1 && r_color == 0)
+        //{
+        //    GameObject card = transform.parent.parent.gameObject;
+        //    card.tag = "Player";
+        //    Debug.Log(gameObject.GetComponent<Image>().color);
+        //}
     }
 
     void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -28,28 +44,15 @@ public class OnlineColor : MonoBehaviourPunCallbacks, IPunObservable
             stream.SendNext(gameObject.GetComponent<Image>().color.g);
             stream.SendNext(gameObject.GetComponent<Image>().color.b);
             stream.SendNext(gameObject.GetComponent<Image>().color.a);
-            Debug.Log("send");
         }
         else
         {
             //データの受信
-            float r = (float)stream.ReceiveNext();
-            float g = (float)stream.ReceiveNext();
-            float b = (float)stream.ReceiveNext();
-            float a = (float)stream.ReceiveNext();
-            Debug.Log("receive");
-            gameObject.GetComponent<Image>().color = new Vector4(r, g, b, a);
-
-            if (r == 1 && b == 0)
-            {
-                GameObject card = transform.parent.parent.gameObject;
-                card.tag = "Enemy";
-            }
-            if (b == 1 && r == 0)
-            {
-                GameObject card = transform.parent.parent.gameObject;
-                card.tag = "Player";
-            }
+            r_color = (float)stream.ReceiveNext();
+            g_color = (float)stream.ReceiveNext();
+            b_color = (float)stream.ReceiveNext();
+            a_color = (float)stream.ReceiveNext();
+            gameObject.GetComponent<Image>().color = new Color(r_color, g_color, b_color, a_color);
         }
     }
 }

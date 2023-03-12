@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class OnlineSetEnemyTag : MonoBehaviour
 {
+    [SerializeField] OnlineGameManager _gameManager;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag != "Enemy")
@@ -11,8 +13,12 @@ public class OnlineSetEnemyTag : MonoBehaviour
             if (collision.gameObject.name == "OnlineCard(Clone)")
             {
                 collision.gameObject.tag = "Enemy";
-                Debug.Log(collision.tag);
             }
+        }
+
+        if (_gameManager.gameSet == true)
+        {
+            Destroy(collision.gameObject);
         }
     }
 }

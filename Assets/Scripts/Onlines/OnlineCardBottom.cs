@@ -29,18 +29,11 @@ public class OnlineCardBottom : MonoBehaviour
                     if (_myCard.numberBottom > _enemyCard.numberTop)
                     {
                         Transform canvas = _enemyCard.transform.Find("Canvas");
-                        canvas.transform.Find("Frame").GetComponent<Image>().color = new Color32(0, 0, 255, 255);
-                        Debug.Log(canvas);
+                        canvas.transform.Find("Frame").GetComponent<Image>().color = new Color(0, 0, 1, 1);
+                        collision.tag = "Player";
+                        _myCard.ChangeTag("Player");
                         Debug.Log("bottom");
                     }
-                }
-            }
-            else if (collision.gameObject.tag == "Player" && _cardMove.setCard == true && _stay == false)
-            {
-                if (battleBottom == true && _cardMove.setCard == true)
-                {
-                    battleBottom = false;
-                    Debug.Log("bottom2");
                 }
             }
             else if (collision.gameObject.tag == "Field" && _cardMove.setCard == true && _stay == false)
@@ -61,36 +54,23 @@ public class OnlineCardBottom : MonoBehaviour
                 if (battleBottom == true && _cardMove.setCard == true)
                 {
                     battleBottom = false;
-                    _cardTop.battleTop = false;
-                    _cardRight.battleRight = false;
-                    _cardLeft.battleLeft = false;
                     GameObject _enemyCardObject = collision.gameObject;
                     OnlineCard _enemyCard = _enemyCardObject.GetComponent<OnlineCard>();
                     if (_myCard.numberBottom > _enemyCard.numberTop)
                     {
                         Transform canvas = _enemyCard.transform.Find("Canvas");
-                        canvas.transform.Find("Frame").GetComponent<Image>().color = new Color32(255, 0, 0, 255);
-                        Debug.Log(canvas);
+                        canvas.transform.Find("Frame").GetComponent<Image>().color = new Color(1, 0, 0, 1);
+                        collision.tag = "Enemy";
+                        _myCard.ChangeTag("Enemy");
                         Debug.Log("bottom");
                     }
-                }
-            }
-            else if (collision.gameObject.tag == "Enemy" && _cardMove.setCard == true && _stay == false)
-            {
-                if (battleBottom == true && _cardMove.setCard == true && _stay == false)
-                {
-                    battleBottom = false;
-                    //_cardTop.battleTop = false;
-                    //_cardRight.battleRight = false;
-                    //_cardLeft.battleLeft = false;
-                    Debug.Log("bottom2");
                 }
             }
             else if (collision.gameObject.tag == "Field" && _cardMove.setCard == true && _stay == false)
             {
                 if (battleBottom == true && _cardMove.setCard == true && _stay == false)
                 {
-                    Invoke("ChangeBattleFlagLate", 1.5f);
+                    battleBottom = false;
                     Debug.Log("bottom3");
                 }
             }

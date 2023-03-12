@@ -129,6 +129,7 @@ public class OnlineSpecialTop : MonoBehaviour
         cardLeft.battleLeft = true;
         Transform canvas = _enemyCardObject.transform.Find("Canvas");
         canvas.transform.Find("Frame").GetComponent<Image>().color = new Color32(0, 0, 255, 255);
+        _myCard.ChangeTag("Player");
     }
 
     public void SpecialEnemyAction(Collider2D collision, GameObject _enemyCardObject)
@@ -144,5 +145,6 @@ public class OnlineSpecialTop : MonoBehaviour
         cardLeft.battleLeft = true;
         Transform canvas = _enemyCardObject.transform.Find("Canvas");
         canvas.transform.Find("Frame").GetComponent<Image>().color = new Color32(255, 0, 0, 255);
+        _myCard.ChangeTag("Enemy");
     }
 }

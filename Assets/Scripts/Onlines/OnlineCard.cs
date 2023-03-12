@@ -37,6 +37,8 @@ public class OnlineCard : MonoBehaviourPunCallbacks, IPunObservable
     [SerializeField] public Text numberLeftText;
     [SerializeField] Image iconImage;
 
+    public string cardTag; // カードのタグ
+
     public void Set()
     {
         //カードパワーをランダムに設定
@@ -91,6 +93,25 @@ public class OnlineCard : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
+    // カードのタグが変更されたときに呼び出されるメソッド
+    public void ChangeTag(string newTag)
+    {
+        cardTag = newTag;
+
+        if (photonView.IsMine)
+        {
+            // 自分自身のカードのタグが変更された場合、他のプレイヤーに通知する
+            photonView.RPC("SyncTag", RpcTarget.Others, cardTag);
+        }
+    }
+
+    // カードのタグを同期するためのRPCメソッド
+    [PunRPC]
+    private void SyncTag(string newTag)
+    {
+        cardTag = newTag;
+    }
+
     void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
@@ -105,6 +126,7 @@ public class OnlineCard : MonoBehaviourPunCallbacks, IPunObservable
             stream.SendNext(numberRightText.text);
             stream.SendNext(numberLeftText.text);
             stream.SendNext(cardElement);
+            stream.SendNext(cardTag);
         }
         else
         {
@@ -118,6 +140,7 @@ public class OnlineCard : MonoBehaviourPunCallbacks, IPunObservable
             numberRightText.text = (string)stream.ReceiveNext();
             numberLeftText.text = (string)stream.ReceiveNext();
             cardElement = (CardElement)stream.ReceiveNext();
+            cardTag = (string)stream.ReceiveNext();
 
             //属性に応じてアイコンを表示
             if (cardElement == CardElement.Fire)

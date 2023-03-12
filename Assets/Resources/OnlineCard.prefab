@@ -1024,6 +1024,7 @@ MonoBehaviour:
   numberRightText: {fileID: 268603992162521838}
   numberLeftText: {fileID: 268603991105733744}
   iconImage: {fileID: 268603992645662523}
+  cardTag: 
 --- !u!114 &4432001431528908774
 MonoBehaviour:
   m_ObjectHideFlags: 0
