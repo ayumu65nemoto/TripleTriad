@@ -15,10 +15,15 @@ public class OnlineSetTag : MonoBehaviour
                 collision.gameObject.tag = "Player";
             }
         }
+    }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        Debug.Log("des");
         if (_gameManager.gameSet == true)
         {
             Destroy(collision.gameObject);
+            Debug.Log("desed");
         }
     }
 }

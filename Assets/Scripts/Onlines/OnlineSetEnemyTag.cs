@@ -15,10 +15,14 @@ public class OnlineSetEnemyTag : MonoBehaviour
                 collision.gameObject.tag = "Enemy";
             }
         }
+    }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
         if (_gameManager.gameSet == true)
         {
             Destroy(collision.gameObject);
+            Debug.Log("des");
         }
     }
 }

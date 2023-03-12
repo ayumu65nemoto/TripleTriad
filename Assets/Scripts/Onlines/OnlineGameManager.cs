@@ -133,25 +133,53 @@ public class OnlineGameManager : MonoBehaviourPunCallbacks, IPunObservable
         if (_photonManager.playerId == 1)
         {
             playerCanvas1.SetActive(true);
-            if (_playerCards.Length > 4)
+            if (turn == true)
             {
-                winText.SetActive(true);
+                if (_playerCards.Length-1 > 4)
+                {
+                    winText.SetActive(true);
+                }
+                if (_playerCards.Length-1 < 5)
+                {
+                    loseText.SetActive(true);
+                }
             }
-            if (_playerCards.Length < 5)
+            if (turn == false)
             {
-                loseText.SetActive(true);
+                if (_playerCards.Length > 4)
+                {
+                    winText.SetActive(true);
+                }
+                if (_playerCards.Length < 5)
+                {
+                    loseText.SetActive(true);
+                }
             }
         }
         if (_photonManager.playerId == 2)
         {
             playerCanvas2.SetActive(true);
-            if (_playerCards.Length > 4)
+            if (turn == true)
             {
-                loseText2.SetActive(true);
+                if (_playerCards.Length > 4)
+                {
+                    loseText2.SetActive(true);
+                }
+                if (_playerCards.Length < 5)
+                {
+                    winText2.SetActive(true);
+                }
             }
-            if (_playerCards.Length < 5)
+            if (turn == false)
             {
-                winText2.SetActive(true);
+                if (_playerCards.Length-1 > 4)
+                {
+                    loseText2.SetActive(true);
+                }
+                if (_playerCards.Length-1 < 5)
+                {
+                    winText2.SetActive(true);
+                }
             }
         }
         replay.SetActive(true);
